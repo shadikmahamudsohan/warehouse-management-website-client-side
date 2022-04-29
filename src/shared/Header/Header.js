@@ -5,7 +5,7 @@ import ActiveLink from '../ActiveLink/ActiveLink';
 
 const Header = () => {
     return (
-        <Navbar className="py-2 text-center" bg="dark" variant="dark" expand="lg" fixed="sticky">
+        <Navbar className="py-2 text-center" bg="primary" variant="dark" expand="lg" fixed="sticky">
             <Container>
                 <Navbar.Brand as={Link} to="/"><h2 className='me-3'>pharmadb</h2></Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -17,7 +17,7 @@ const Header = () => {
                         <Nav.Link as={ActiveLink} to="/link3">My items</Nav.Link>
                     </Nav>
                     <Nav className='ms-auto'>
-                        <Nav.Link as={Link} to="/link">
+                        <Nav.Link as={Link} to="/signIn">
                             <Button variant="light" className='px-4 rounded-pill fw-bold w-100'>sign in</Button>
                         </Nav.Link>
                         <Nav.Link as={Link} to="/link">

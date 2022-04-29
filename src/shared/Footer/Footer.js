@@ -5,7 +5,7 @@ import './Footer.css'
 const Footer = () => {
     var currentYear = new Date().getFullYear();
     return (
-        <footer className='bg-dark text-light text-center'>
+        <footer className='bg-primary text-light text-center'>
             <div className="icons py-3 d-flex justify-content-center">
                 <div className="link-container mx-2">
                     <FaFacebookF />
