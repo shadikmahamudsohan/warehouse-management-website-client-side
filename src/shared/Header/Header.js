@@ -5,7 +5,7 @@ import ActiveLink from '../ActiveLink/ActiveLink';
 
 const Header = () => {
     return (
-        <Navbar className="py-2" bg="dark" variant="dark" expand="lg" style={{ textAlign: 'center' }}>
+        <Navbar className="py-2 text-center" bg="dark" variant="dark" expand="lg" fixed="sticky">
             <Container>
                 <Navbar.Brand as={Link} to="/"><h2 className='me-3'>pharmadb</h2></Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />

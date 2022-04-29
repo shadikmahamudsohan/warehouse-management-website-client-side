@@ -1,0 +1,26 @@
+footer {
+    margin-top: 1rem;
+    width: 100%;
+}
+
+.copy-right {
+    background-color: rgb(24, 24, 24);
+}
+
+.link-container {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid white;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: 500ms;
+}
+
+.link-container:hover {
+    border: none;
+    background-color: white;
+    color: black;
+}
