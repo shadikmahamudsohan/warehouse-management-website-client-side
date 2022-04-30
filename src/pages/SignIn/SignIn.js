@@ -18,7 +18,7 @@ const SignIn = () => {
         error,
     ] = useSignInWithEmailAndPassword(auth);
 
-    const handleSignIn = event => {
+    const handleRegister = event => {
         event.preventDefault()
         setErrorMessage('')
         // -----------validation---------
@@ -43,12 +43,15 @@ const SignIn = () => {
         if (loading) {
             return <LoadingSpinner />
         }
+        if (user) {
+            event.target.reset()
+        }
     }
     return (
         <div className="authentication">
             <div className='container form-container'>
                 <h3 className=' fw-bold text-center'>Please Login</h3>
-                <Form onSubmit={handleSignIn} noValidate validated={validated} >
+                <Form onSubmit={handleRegister} noValidate validated={validated} >
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Label>Email address</Form.Label>
                         <Form.Control required type="email" name="email" placeholder="Enter email" />

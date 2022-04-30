@@ -45,6 +45,9 @@ const Register = () => {
         if (loading) {
             return <LoadingSpinner />
         }
+        if (user) {
+            event.target.reset()
+        }
     }
     return (
         <div>

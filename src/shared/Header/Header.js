@@ -20,7 +20,7 @@ const Header = () => {
                     <Nav className="me-auto">
                         <Nav.Link as={ActiveLink} to="/home">Home</Nav.Link>
                         <Nav.Link as={ActiveLink} to="/link1">Manage Items</Nav.Link>
-                        <Nav.Link as={ActiveLink} to="/link2">Add Item</Nav.Link>
+                        <Nav.Link as={ActiveLink} to="/addItems">Add Item</Nav.Link>
                         <Nav.Link as={ActiveLink} to="/link3">My items</Nav.Link>
                     </Nav>
 
