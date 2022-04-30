@@ -1,9 +1,16 @@
+import { signOut } from 'firebase/auth';
 import React from 'react';
 import { Button, Container, Nav, Navbar } from 'react-bootstrap';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link } from 'react-router-dom';
+import auth from '../../Firebase/firebase.init';
 import ActiveLink from '../ActiveLink/ActiveLink';
 
 const Header = () => {
+    const [user] = useAuthState(auth);
+    const handleSignOut = () => {
+        signOut(auth);
+    }
     return (
         <Navbar className="py-2 text-center" bg="primary" variant="dark" expand="lg" fixed="sticky">
             <Container>
@@ -16,13 +23,16 @@ const Header = () => {
                         <Nav.Link as={ActiveLink} to="/link2">Add Item</Nav.Link>
                         <Nav.Link as={ActiveLink} to="/link3">My items</Nav.Link>
                     </Nav>
+
                     <Nav className='ms-auto'>
-                        <Nav.Link as={Link} to="/signIn">
-                            <Button variant="light" className='px-4 rounded-pill fw-bold w-100'>sign in</Button>
-                        </Nav.Link>
-                        <Nav.Link as={Link} to="/link">
-                            <Button variant="danger" className='px-4 rounded-pill fw-bold w-100'>sign Out</Button>
-                        </Nav.Link>
+                        {
+                            user ? <Nav.Link onClick={handleSignOut}>
+                                <Button variant="danger" className='px-4 rounded-pill fw-bold w-100'>sign Out</Button>
+                            </Nav.Link> :
+                                <Nav.Link as={Link} to="/signIn">
+                                    <Button variant="light" className='px-4 rounded-pill fw-bold w-100'>sign in</Button>
+                                </Nav.Link>
+                        }
                     </Nav>
                 </Navbar.Collapse>
             </Container>
