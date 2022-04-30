@@ -19,7 +19,7 @@ const SignIn = () => {
         error,
     ] = useSignInWithEmailAndPassword(auth);
 
-    //private route
+    //private route navigate
     let navigate = useNavigate();
     let location = useLocation();
     let from = location.state?.from?.pathname || '/';

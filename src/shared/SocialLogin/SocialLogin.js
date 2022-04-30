@@ -5,6 +5,9 @@ import { Button } from 'react-bootstrap';
 import auth from '../../Firebase/firebase.init';
 import { useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
+import { toast } from 'react-toastify';
+import { useLocation, useNavigate } from 'react-router-dom';
+
 
 const SocialLogin = () => {
     const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
@@ -12,8 +15,22 @@ const SocialLogin = () => {
     const handleGoogleSignIn = () => {
         signInWithGoogle()
     }
+
+    //private route navigate
+    let navigate = useNavigate();
+    let location = useLocation();
+    let from = location.state?.from?.pathname || '/';
+    //--------------
+
     if (loading) {
         return <LoadingSpinner />
+    }
+    if (user) {
+        toast('Logged In');
+        navigate(from, { replace: true });
+    }
+    if (error) {
+        return
     }
     return (
         <div className='my-3 text-center'>

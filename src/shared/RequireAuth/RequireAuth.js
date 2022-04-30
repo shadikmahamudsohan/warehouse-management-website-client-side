@@ -14,7 +14,7 @@ const RequireAuth = ({ children }) => {
         return <p className='text-danger'>{error.massage}</p>
     }
     if (!user) {
-        return <Navigate to="/login" state={{ from: location }} replace />;
+        return <Navigate to="/signIn" state={{ from: location }} replace />;
     }
 
     return children;

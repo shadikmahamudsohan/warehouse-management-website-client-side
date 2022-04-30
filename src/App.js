@@ -10,6 +10,7 @@ import Register from './pages/Register/Register';
 import AddItems from './pages/AddItems/AddItems';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import RequireAuth from './shared/RequireAuth/RequireAuth';
 
 
 function App() {
@@ -22,7 +23,10 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/signIn" element={<SignIn />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/addItems" element={<AddItems />} />
+        {/* <Route path="/addItems" element={<AddItems />} /> */}
+        <Route path="/addItems" element={<RequireAuth>
+          <AddItems />
+        </RequireAuth>} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
