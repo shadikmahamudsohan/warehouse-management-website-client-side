@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../Firebase/firebase.init';
 import LoadingSpinner from '../../shared/LoadingSpinner/LoadingSpinner';
 import SocialLogin from '../../shared/SocialLogin/SocialLogin';
 import { BiErrorCircle } from 'react-icons/bi'
+import { toast } from 'react-toastify';
 
 const Register = () => {
 
@@ -18,6 +19,12 @@ const Register = () => {
         loading,
         error,
     ] = useCreateUserWithEmailAndPassword(auth);
+
+    //private route
+    let navigate = useNavigate();
+    let location = useLocation();
+    let from = location.state?.from?.pathname || '/';
+    //--------------
 
     const handleSignIn = event => {
         event.preventDefault()
@@ -47,6 +54,8 @@ const Register = () => {
         }
         if (user) {
             event.target.reset()
+            toast('Account Created')
+            navigate(from, { replace: true });
         }
     }
     return (

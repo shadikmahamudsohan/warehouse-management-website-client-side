@@ -6,7 +6,8 @@ import { BiErrorCircle } from 'react-icons/bi'
 import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import auth from '../../Firebase/firebase.init';
 import LoadingSpinner from '../../shared/LoadingSpinner/LoadingSpinner';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const SignIn = () => {
     const [errorMessage, setErrorMessage] = useState('');
@@ -17,6 +18,12 @@ const SignIn = () => {
         loading,
         error,
     ] = useSignInWithEmailAndPassword(auth);
+
+    //private route
+    let navigate = useNavigate();
+    let location = useLocation();
+    let from = location.state?.from?.pathname || '/';
+    //--------------
 
     const handleRegister = event => {
         event.preventDefault()
@@ -34,17 +41,19 @@ const SignIn = () => {
         if (!email || !password) {
             setErrorMessage('Please fill all the forms!')
         } else {
-            console.log(email, password);
             signInWithEmailAndPassword(email, password)
         }
         if (error) {
             setErrorMessage(error.message)
         }
         if (loading) {
+            console.log(loading);
             return <LoadingSpinner />
         }
         if (user) {
             event.target.reset()
+            toast('Logged In')
+            navigate(from, { replace: true });
         }
     }
     return (
