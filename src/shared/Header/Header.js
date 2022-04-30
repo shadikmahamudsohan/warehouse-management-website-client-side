@@ -7,7 +7,7 @@ const Header = () => {
     return (
         <Navbar className="py-2 text-center" bg="primary" variant="dark" expand="lg" fixed="sticky">
             <Container>
-                <Navbar.Brand as={Link} to="/"><h2 className='me-3'>pharmadb</h2></Navbar.Brand>
+                <Navbar.Brand as={Link} to="/"><h2 className='me-3'>pharmabd</h2></Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
