@@ -1,0 +1,10 @@
+.text {
+    font-size: 50px;
+    color: rgb(0, 0, 145);
+    text-shadow: 5px 5px 5px gray;
+    text-align: center;
+}
+
+.not-found img {
+    max-width: 1000px;
+}
