@@ -21,6 +21,7 @@ const SingleItem = ({ data }) => {
                     <Card.Text>
                         {description}
                     </Card.Text>
+                    <div className="btn btn-primary mt-2">Manage Items</div>
                 </Card.Body>
             </Card>
         </Col>

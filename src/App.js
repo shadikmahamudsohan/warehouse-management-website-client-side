@@ -11,12 +11,13 @@ import AddItems from './pages/AddItems/AddItems';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import RequireAuth from './shared/RequireAuth/RequireAuth';
+import { useEffect, useState } from 'react';
 // import "animate.css/animate.min.css";
 
 
 function App() {
   return (
-    <div className="App">
+    <div className="App" id='main'>
       <ToastContainer />
       <Header />
       <Routes>
@@ -31,7 +32,7 @@ function App() {
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
-    </div>
+    </div >
   );
 }
 

@@ -7,7 +7,7 @@ import { useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 import { toast } from 'react-toastify';
 import { useLocation, useNavigate } from 'react-router-dom';
-
+import { BiErrorCircle } from 'react-icons/bi'
 
 const SocialLogin = () => {
     const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
@@ -29,9 +29,7 @@ const SocialLogin = () => {
         toast('Logged In');
         navigate(from, { replace: true });
     }
-    if (error) {
-        return
-    }
+
     return (
         <div className='my-3 text-center'>
             <div className="d-flex justify-content-center align-items-center">
@@ -44,6 +42,10 @@ const SocialLogin = () => {
                 <span className='mx-1'></span>
                 <span>SignIn with Google</span>
             </Button>
+            {error && <div className="alert alert-danger mt-3" role="alert">
+                <BiErrorCircle size={25} className='me-2' />
+                {error.message}
+            </div>}
         </div>
     );
 };

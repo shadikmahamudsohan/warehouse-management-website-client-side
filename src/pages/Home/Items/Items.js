@@ -1,14 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Row } from 'react-bootstrap';
+import useProducts from '../../../hooks/useProducts';
 import SingleItem from './SingleItm/SingleItem';
 
 const Items = () => {
-    const [products, setProducts] = useState([])
-    useEffect(() => {
-        fetch('http://localhost:5000/products')
-            .then(res => res.json())
-            .then(data => setProducts(data))
-    }, [])
+    const [products] = useProducts()
     return (
         <div id='items' className='my-5 container'>
             <h1 className='text-primary'>Our latest managing Items ___________________</h1>

@@ -5,6 +5,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link } from 'react-router-dom';
 import auth from '../../Firebase/firebase.init';
 import ActiveLink from '../ActiveLink/ActiveLink';
+import DarkMode from '../DarkMode/DarkMode';
 import './Header.css'
 
 const Header = () => {
@@ -33,13 +34,14 @@ const Header = () => {
                     <Nav className='ms-auto'>
                         {
                             user ? <Nav.Link onClick={handleSignOut}>
-                                <Button variant="danger" className='px-4 rounded-pill fw-bold w-100'>sign Out</Button>
+                                <Button variant="danger" className='px-4  w-100'>sign Out</Button>
                             </Nav.Link> :
                                 <Nav.Link as={Link} to="/signIn">
-                                    <Button variant="light" className='px-4 rounded-pill fw-bold w-100'>sign in</Button>
+                                    <Button variant="light" className='px-4  w-100'>sign in</Button>
                                 </Nav.Link>
                         }
                     </Nav>
+                    <DarkMode />
                 </Navbar.Collapse>
             </Container>
         </Navbar>

@@ -1,6 +1,5 @@
 import React from 'react';
 import { Carousel } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
 import Typical from 'react-typical'
 import './Banner.css'
 
