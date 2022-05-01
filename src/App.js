@@ -11,6 +11,7 @@ import AddItems from './pages/AddItems/AddItems';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import RequireAuth from './shared/RequireAuth/RequireAuth';
+// import "animate.css/animate.min.css";
 
 
 function App() {

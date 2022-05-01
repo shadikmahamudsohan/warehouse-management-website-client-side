@@ -4,6 +4,7 @@
 
 .carousel-item img {
     opacity: 70%;
+    height: 100vh;
 }
 
 /* CSS */

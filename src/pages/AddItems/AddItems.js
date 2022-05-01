@@ -2,11 +2,14 @@ import React, { useState } from 'react';
 import { Form } from 'react-bootstrap';
 import { BiErrorCircle } from 'react-icons/bi'
 import { toast, ToastContainer } from 'react-toastify';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import auth from '../../Firebase/firebase.init';
 
 
 const AddItems = () => {
     // const [errorMessage, setErrorMessage] = useState('');
     const [validated, setValidated] = useState(false);
+    const [user] = useAuthState(auth);
 
     const handleAddProduct = event => {
         event.preventDefault()
@@ -30,6 +33,13 @@ const AddItems = () => {
                     <Form.Group className="mb-3" controlId="name">
                         <Form.Label>Product name</Form.Label>
                         <Form.Control required type="text" name="name" placeholder="Product Name" />
+                        <Form.Control.Feedback type="invalid">
+                            Please provide a name.
+                        </Form.Control.Feedback>
+                    </Form.Group>
+                    <Form.Group className="mb-3" controlId="name">
+                        <Form.Label>Your email</Form.Label>
+                        <Form.Control type="email" value={user?.email} readOnly disabled placeholder="Product Name" />
                         <Form.Control.Feedback type="invalid">
                             Please provide a name.
                         </Form.Control.Feedback>

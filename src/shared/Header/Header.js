@@ -5,6 +5,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link } from 'react-router-dom';
 import auth from '../../Firebase/firebase.init';
 import ActiveLink from '../ActiveLink/ActiveLink';
+import './Header.css'
 
 const Header = () => {
     const [user] = useAuthState(auth);
@@ -12,9 +13,9 @@ const Header = () => {
         signOut(auth);
     }
     return (
-        <Navbar className="py-2 text-center" bg="primary" variant="dark" expand="lg" fixed="sticky">
+        <Navbar className="py-2 text-center" bg="primary" variant="dark" expand="lg" sticky="top" >
             <Container>
-                <Navbar.Brand as={Link} to="/"><h2 className='me-3'>pharmabd</h2></Navbar.Brand>
+                <Navbar.Brand as={Link} to="/"><h2 className='me-3 title'>pharmabd</h2></Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">

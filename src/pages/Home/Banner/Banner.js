@@ -5,7 +5,6 @@ import Typical from 'react-typical'
 import './Banner.css'
 
 const Banner = () => {
-    const navigate = useNavigate()
     return (
         <div>
             <Carousel fade className='carousel d-flex h-100 justify-content-center align-items-center'>
@@ -30,7 +29,7 @@ const Banner = () => {
                                         3000
                                     ]}
                                 /></h1>
-                            <p className='fs-4'>
+                            <p className='fs-4 mb-4'>
                                 <Typical
                                     loop={1}
                                     steps={[
@@ -38,7 +37,7 @@ const Banner = () => {
                                         2000,
                                     ]}
                                 /></p>
-                            <button className="button" onClick={() => navigate('/home#items')}>Check Our Management</button>
+                            <a href="#items" className="button text-decoration-none">Check Our Management</a>
                         </div>
                     </Carousel.Caption>
                 </Carousel.Item>
@@ -64,7 +63,7 @@ const Banner = () => {
                                         3000
                                     ]}
                                 /></h1>
-                            <p className='fs-4'>
+                            <p className='fs-4 mb-4'>
                                 <Typical
                                     loop={1}
                                     steps={[
@@ -73,7 +72,7 @@ const Banner = () => {
                                     ]}
                                 />
                             </p>
-                            <button className="button" onClick={() => navigate('/home#items')}>Check Our Management</button>
+                            <a href="#items" className="button text-decoration-none">Check Our Management</a>
                         </div>
                     </Carousel.Caption>
                 </Carousel.Item>
@@ -99,8 +98,8 @@ const Banner = () => {
                                     ]}
                                 />
                             </h1>
-                            <p className='fs-4'>We help other foundation by helping there management.</p>
-                            <button className="button" onClick={() => navigate('/home#items')}>Check Our Management</button>
+                            <p className='fs-4 mb-4'>We help other foundation by helping there management.</p>
+                            <a href="#items" className="button text-decoration-none">Check Our Management</a>
                         </div>
                     </Carousel.Caption>
                 </Carousel.Item>
