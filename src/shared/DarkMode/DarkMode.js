@@ -8,10 +8,15 @@ const DarkMode = () => {
         setDark(!dark)
 
     }
+
     if (dark) {
         document?.getElementById('main')?.classList?.add('bg-dark')
+        document?.getElementById('table')?.classList?.add('text-light')
+
     } else {
         document?.getElementById('main')?.classList?.remove('bg-dark')
+        document?.getElementById('table')?.classList?.remove('text-light')
+
     }
     return (
         <div className='ps-2'>

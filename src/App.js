@@ -11,8 +11,7 @@ import AddItems from './pages/AddItems/AddItems';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import RequireAuth from './shared/RequireAuth/RequireAuth';
-import { useEffect, useState } from 'react';
-// import "animate.css/animate.min.css";
+import ManageItems from './pages/ManageItems/ManageItems';
 
 
 function App() {
@@ -25,9 +24,11 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/signIn" element={<SignIn />} />
         <Route path="/register" element={<Register />} />
-        {/* <Route path="/addItems" element={<AddItems />} /> */}
         <Route path="/addItems" element={<RequireAuth>
           <AddItems />
+        </RequireAuth>} />
+        <Route path="/manageItems" element={<RequireAuth>
+          <ManageItems />
         </RequireAuth>} />
         <Route path="*" element={<NotFound />} />
       </Routes>

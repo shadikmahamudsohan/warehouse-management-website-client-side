@@ -80,7 +80,7 @@ const SignIn = () => {
                         <p>New to pharmabd? <Link className='text-white' to='/register'>Create a new account!</Link></p>
 
                     </div>
-                    <Button className="w-100 py-2  custom-button" type="submit">
+                    <Button className="w-100 py-2 custom-button" type="submit">
                         Submit
                     </Button>
                     {

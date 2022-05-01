@@ -18,7 +18,6 @@ const Banner = () => {
                             <h1 className='fs-1 fw-bold'>We Service
                                 <br />
                                 <Typical
-                                    loop={Infinity}
                                     steps={[
                                         'All Kinds of medicine',
                                         3000,
@@ -27,8 +26,9 @@ const Banner = () => {
                                         'Product management',
                                         3000
                                     ]}
+                                    loop={Infinity}
                                 /></h1>
-                            <p className='fs-4 mb-4'>
+                            <p className='fs-4 mb-5'>
                                 <Typical
                                     loop={1}
                                     steps={[
@@ -36,7 +36,7 @@ const Banner = () => {
                                         2000,
                                     ]}
                                 /></p>
-                            <a href="#items" className="button text-decoration-none">Check Our Management</a>
+                            <a href="#items" className="custom-button py-3 px-5 text-decoration-none">Check Our Management</a>
                         </div>
                     </Carousel.Caption>
                 </Carousel.Item>
@@ -62,7 +62,7 @@ const Banner = () => {
                                         3000
                                     ]}
                                 /></h1>
-                            <p className='fs-4 mb-4'>
+                            <p className='fs-4 mb-5'>
                                 <Typical
                                     loop={1}
                                     steps={[
@@ -71,7 +71,7 @@ const Banner = () => {
                                     ]}
                                 />
                             </p>
-                            <a href="#items" className="button text-decoration-none">Check Our Management</a>
+                            <a href="#items" className="custom-button py-3 px-5 text-decoration-none">Check Our Management</a>
                         </div>
                     </Carousel.Caption>
                 </Carousel.Item>
@@ -97,8 +97,8 @@ const Banner = () => {
                                     ]}
                                 />
                             </h1>
-                            <p className='fs-4 mb-4'>We help other foundation by helping there management.</p>
-                            <a href="#items" className="button text-decoration-none">Check Our Management</a>
+                            <p className='fs-4 mb-5'>We help other foundation by helping there management.</p>
+                            <a href="#items" className="custom-button py-3 px-5 text-decoration-none">Check Our Management</a>
                         </div>
                     </Carousel.Caption>
                 </Carousel.Item>
