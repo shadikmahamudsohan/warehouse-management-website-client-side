@@ -7,21 +7,20 @@ import { toast } from 'react-toastify';
 const InventoryItem = () => {
     const { itemId } = useParams()
     const [item] = useItem(itemId)
-    const { _id, name, img, sold, genericName, price, description } = item;
-    console.log(sold);
+    const { _id, name, img, sold, quantity, genericName, price, description } = item;
+    console.log(quantity);
 
-    const [newSold, setNewSold] = useState(sold)
+    const [newQuantity, setNewQuantity] = useState(quantity)
     useEffect(() => {
-        setNewSold(sold)
-    }, [sold])
+        setNewQuantity(quantity)
+    }, [quantity])
 
     const handleAddItems = event => {
 
         event.preventDefault()
-        const sold = parseInt(event.target.number.value)
-        setNewSold(sold + newSold);
-        console.log(sold);
-        const updateItem = { _id, name, img, sold: sold + newSold, genericName, price, description }
+        const quantity = parseInt(event.target.number.value)
+        setNewQuantity(quantity + newQuantity);
+        const updateItem = { _id, name, img, sold, quantity: quantity + newQuantity, genericName, price, description }
         const url = `http://localhost:5000/item/${_id}`
         fetch(url, {
             method: 'PUT',
@@ -41,7 +40,7 @@ const InventoryItem = () => {
     const handleDeliver = () => {
         console.log('delivered');
     }
-
+    console.log(newQuantity);
     return (
         <div className='row align-items-center container mx-auto' style={{ minHeight: '80vh' }}>
             <div className="col-md-6 d-flex justify-content-center align-items-center">
@@ -50,8 +49,9 @@ const InventoryItem = () => {
             <div className='col-md-6 d-flex justify-content-center align-items-center'>
                 <div>
                     <h1>Item name: {name}</h1>
-                    <h3>Sold: {newSold}</h3>
-                    <h4>Price: {price}</h4>
+                    <h3 className='text-danger'>quantity: {newQuantity}</h3>
+                    <h4>Sold: {sold}</h4>
+                    <h5>Price: {price}$</h5>
                     <p><strong>GenericName:</strong> {genericName}</p>
                     <p><strong>Description:</strong> {description}</p>
                     <button onClick={handleDeliver} className="btn btn-primary d-flex justify-content-center">
