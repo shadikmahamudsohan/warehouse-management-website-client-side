@@ -3,8 +3,8 @@ import './LoadingSpinner.css'
 
 const LoadingSpinner = () => {
     return (
-        <div>
-            <div class="loader"></div>
+        <div style={{ minHight: '70vh' }}>
+            <div className="loader"></div>
         </div>
     );
 };
