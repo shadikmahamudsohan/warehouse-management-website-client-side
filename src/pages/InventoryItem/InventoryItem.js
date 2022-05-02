@@ -19,9 +19,9 @@ const InventoryItem = () => {
 
         event.preventDefault()
         const sold = parseInt(event.target.number.value)
-        setNewSold(sold);
+        setNewSold(sold + newSold);
         console.log(sold);
-        const updateItem = { _id, name, img, sold, genericName, price, description }
+        const updateItem = { _id, name, img, sold: sold + newSold, genericName, price, description }
         const url = `http://localhost:5000/item/${_id}`
         fetch(url, {
             method: 'PUT',
