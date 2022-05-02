@@ -11,12 +11,15 @@ const DarkMode = () => {
 
     if (dark) {
         document?.getElementById('main')?.classList?.add('bg-dark')
+        document?.getElementById('main')?.classList?.add('text-light')
         document?.getElementById('table')?.classList?.add('text-light')
+        document?.getElementById('card')?.classList?.add('bg-dark')
 
     } else {
         document?.getElementById('main')?.classList?.remove('bg-dark')
+        document?.getElementById('main')?.classList?.remove('text-light')
         document?.getElementById('table')?.classList?.remove('text-light')
-
+        document?.getElementById('card')?.classList?.remove('bg-dark')
     }
     return (
         <div className='ps-2'>

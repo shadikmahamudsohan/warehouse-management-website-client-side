@@ -72,12 +72,12 @@ const InventoryItem = () => {
     }
     //-----------------------------
     return (
-        <div className='row align-items-center container mx-auto' style={{ minHeight: '80vh' }}>
+        <div id='inventory' className='row align-items-center container mx-auto ' style={{ minHeight: '80vh' }}>
             <div className="col-md-6 d-flex justify-content-center align-items-center">
                 <img src={img} className='w-100 rounded shadow' alt="img" />
             </div>
             <div className='col-md-6 d-flex justify-content-center align-items-center my-3'>
-                <div>
+                <div className=''>
                     <h1>Item name: {name}</h1>
                     <h3 className='text-danger'>quantity: {allQuantity}</h3>
                     <h4>Sold: {sold + deliver}</h4>

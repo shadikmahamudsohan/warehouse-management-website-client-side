@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 
 const SingleItem = ({ data }) => {
     const [seeMore, setSeeMore] = useState(true)
-    const { name, price, sold, supplierName, img, description, _id } = data;
+    const { name, price, quantity, sold, supplierName, img, description, _id } = data;
     useEffect(() => {
         Aos.init({ duration: 1500 });
     }, [])
@@ -18,7 +18,7 @@ const SingleItem = ({ data }) => {
     return (
 
         <Col>
-            <Card data-aos='fade-up' className='h-100 card-container'>
+            <Card data-aos='fade-up' className='h-100 card-container text-dark'>
                 <div className="inner">
                     <Card.Img variant="top" src={img} />
                 </div>
@@ -26,12 +26,13 @@ const SingleItem = ({ data }) => {
                     <Card.Title className='d-flex justify-content-around'>
                         <h3>{name}</h3>
                     </Card.Title>
-                    <Card.Title>
+                    <Card.Text>
                         <div className="d-flex justify-content-between">
                             <p>Price: {price}</p>
+                            <p>Quantity: {quantity}</p>
                             <p>Sold: {sold}</p>
                         </div>
-                    </Card.Title>
+                    </Card.Text>
                     <Card.Text>
                         <h6>Supplier: {supplierName}</h6>
                     </Card.Text>

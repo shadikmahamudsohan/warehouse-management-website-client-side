@@ -29,7 +29,7 @@ const ManageItems = () => {
                     </thead>
                     <tbody>
                         {
-                            products.map(product => <TableItem data={product} deleteData={deleteData} />)
+                            products.map(product => <TableItem key={product._id} data={product} deleteData={deleteData} />)
                         }
                     </tbody>
                 </Table>
