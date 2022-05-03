@@ -46,6 +46,7 @@ const AddItems = () => {
                 .then(res => res.json())
                 .then(data => {
                     toast.success('Product Added')
+                    event.target.reset()
                 });
 
         }

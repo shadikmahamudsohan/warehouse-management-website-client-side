@@ -1,32 +1,53 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Table from 'react-bootstrap/Table'
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import useProducts from '../../hooks/useProducts';
+import auth from '../../Firebase/firebase.init';
 import LoadingSpinner from '../../shared/LoadingSpinner/LoadingSpinner';
-import TableItem from './TableItem/TableItem';
+import Items from './Items/Items';
 
-const ManageItems = () => {
-    const [products, setProducts, loading] = useProducts()
+const MYItems = () => {
+    const [user, userLoading] = useAuthState(auth);
+    const [loading, setLoading] = useState(true);
+    const [myItems, setMyItems] = useState([])
+    useEffect(() => {
+        setLoading(true)
+        fetch('http://localhost:5000/myItems', {
+            headers: {
+                'authorization': `${user?.email}`,
+            },
+        })
+            .then(res => res.json())
+            .then(data => {
+                setMyItems(data)
+                setLoading(false)
+            })
+    }, [user])
+
     const navigate = useNavigate()
-    if (loading) {
-        return <LoadingSpinner />
-    }
+
     const deleteData = (id) => {
         const proceed = window.confirm('Are you sure?');
         if (proceed) {
-            fetch(`http://localhost:5000/inventory/${id}`, {
+            fetch(`http://localhost:5000/myItems/${id}`, {
                 method: 'DELETE'
             })
                 .then(res => res.json())
                 .then(data => {
                     if (data.deletedCount > 0) {
                         toast.success('Deleted');
-                        const remaining = products.filter(item => item._id !== id);
-                        setProducts(remaining);
+                        const remaining = myItems.filter(item => item._id !== id);
+                        setMyItems(remaining);
                     }
                 });
         }
+    }
+    if (userLoading) {
+        return <LoadingSpinner />
+    }
+    if (loading) {
+        return <LoadingSpinner />
     }
     return (
         <div className='container' style={{ minHeight: '100vh' }}>
@@ -42,7 +63,7 @@ const ManageItems = () => {
                     </thead>
                     <tbody>
                         {
-                            products.map(product => <TableItem key={product._id} data={product} deleteData={deleteData} />)
+                            myItems.map(product => <Items key={product._id} data={product} deleteData={deleteData} />)
                         }
                     </tbody>
                 </Table>
@@ -53,4 +74,4 @@ const ManageItems = () => {
     );
 };
 
-export default ManageItems;
+export default MYItems;

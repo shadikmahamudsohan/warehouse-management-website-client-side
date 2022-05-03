@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Row } from 'react-bootstrap';
 import useProducts from '../../../hooks/useProducts';
+import LoadingSpinner from '../../../shared/LoadingSpinner/LoadingSpinner';
 import SingleItem from './SingleItm/SingleItem';
 
 const Items = () => {
-    const [products] = useProducts()
+    const [products, setProduct, loading] = useProducts()
+    if (loading) {
+        return <LoadingSpinner />
+    }
     return (
         <div id='items' className='my-5 container'>
             <h1 className='text-primary'>Our latest managing Items ___________________</h1>
