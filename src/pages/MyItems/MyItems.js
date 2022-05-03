@@ -15,7 +15,7 @@ const MYItems = () => {
         setLoading(true)
         fetch('http://localhost:5000/myItems', {
             headers: {
-                'authorization': `${user?.email}`,
+                'authorization': ` ${user?.email} ${localStorage.getItem('accessToken')}`,
             },
         })
             .then(res => res.json())

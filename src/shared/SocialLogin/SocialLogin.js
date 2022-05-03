@@ -12,9 +12,6 @@ import { BiErrorCircle } from 'react-icons/bi'
 const SocialLogin = () => {
     const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
 
-    const handleGoogleSignIn = () => {
-        signInWithGoogle()
-    }
 
     //private route navigate
     let navigate = useNavigate();
@@ -26,9 +23,26 @@ const SocialLogin = () => {
         return <LoadingSpinner />
     }
     if (user) {
-        toast('Logged In');
-        navigate(from, { replace: true });
+        fetch('http://localhost:5000/login', {
+            method: 'POST',
+            body: JSON.stringify({
+                email: user.user.email
+            }),
+            headers: {
+                'Content-type': 'application/json; charset=UTF-8',
+            },
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                localStorage.setItem("accessToken", data.token)
+                navigate(from, { replace: true });
+                toast('Logged In')
+            });
     }
+    const handleGoogleSignIn = () => {
+        signInWithGoogle()
+    }
+
 
     return (
         <div className='my-3 text-center'>

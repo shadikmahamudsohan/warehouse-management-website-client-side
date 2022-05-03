@@ -24,17 +24,17 @@ const SingleItem = ({ data }) => {
                 </div>
                 <Card.Body>
                     <Card.Title className='d-flex justify-content-around'>
-                        <h3>{name}</h3>
+                        {name}
                     </Card.Title>
                     <Card.Text>
-                        <div className="d-flex justify-content-between">
-                            <p>Price: {price}</p>
-                            <p>Quantity: {quantity}</p>
-                            <p>Sold: {sold}</p>
-                        </div>
+                        <span className="d-flex justify-content-between">
+                            <span>Price: {price}</span>
+                            <span>Quantity: {quantity}</span>
+                            <span>Sold: {sold}</span>
+                        </span>
                     </Card.Text>
                     <Card.Text>
-                        <h6>Supplier: {supplierName}</h6>
+                        Supplier: {supplierName}
                     </Card.Text>
                     <Card.Text>
 

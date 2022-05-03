@@ -24,11 +24,30 @@ const SignIn = () => {
     let location = useLocation();
     let from = location.state?.from?.pathname || '/';
     //--------------
+    if (user) {
+
+        fetch('http://localhost:5000/login', {
+            method: 'POST',
+            body: JSON.stringify({
+                email: user.user.email
+            }),
+            headers: {
+                'Content-type': 'application/json; charset=UTF-8',
+            },
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                localStorage.setItem("accessToken", data.token)
+                navigate(from, { replace: true });
+                toast('Logged In')
+            });
+    }
 
     const handleRegister = event => {
         event.preventDefault()
         setErrorMessage('')
         // -----------validation---------
+
         const form = event.currentTarget;
         if (form.checkValidity() === false) {
             event.preventDefault();
@@ -42,6 +61,9 @@ const SignIn = () => {
             setErrorMessage('Please fill all the forms!')
         } else {
             signInWithEmailAndPassword(email, password)
+                .then(() => {
+                    event.target.reset()
+                })
         }
         if (error) {
             setErrorMessage(error.message)
@@ -49,11 +71,6 @@ const SignIn = () => {
         if (loading) {
             console.log(loading);
             return <LoadingSpinner />
-        }
-        if (user) {
-            event.target.reset()
-            toast('Logged In')
-            navigate(from, { replace: true });
         }
     }
     return (

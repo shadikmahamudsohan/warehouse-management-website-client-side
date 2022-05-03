@@ -26,6 +26,26 @@ const Register = () => {
     let from = location.state?.from?.pathname || '/';
     //--------------
 
+    if (user) {
+        toast('Account Created')
+        navigate(from, { replace: true });
+        fetch('http://localhost:5000/login', {
+            method: 'POST',
+            body: JSON.stringify({
+                email: user.user.email
+            }),
+            headers: {
+                'Content-type': 'application/json; charset=UTF-8',
+            },
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                localStorage.setItem("accessToken", data.token)
+                navigate(from, { replace: true });
+                toast('Account created')
+            });
+    }
+
     const handleSignIn = event => {
         event.preventDefault()
         setErrorMessage('')
@@ -51,11 +71,6 @@ const Register = () => {
         }
         if (loading) {
             return <LoadingSpinner />
-        }
-        if (user) {
-            event.target.reset()
-            toast('Account Created')
-            navigate(from, { replace: true });
         }
     }
     return (
