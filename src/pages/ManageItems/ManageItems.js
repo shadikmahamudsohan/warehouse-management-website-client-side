@@ -22,9 +22,7 @@ const ManageItems = () => {
                         setProducts(remaining);
                     }
                 });
-
         }
-
     }
     return (
         <div className='container' style={{ minHeight: '100vh' }}>
@@ -45,7 +43,7 @@ const ManageItems = () => {
                     </tbody>
                 </Table>
             </div>
-            <button className="btn btn-success py-2 px-4 my-4" onClick={() => navigate('/addItems')}>Add New Product</button>
+            <button className="btn btn-success py-2 px-4 my-4" onClick={() => navigate('/addItems')}>Add New Item</button>
 
         </div>
     );
