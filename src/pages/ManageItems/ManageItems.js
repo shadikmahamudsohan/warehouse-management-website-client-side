@@ -6,18 +6,29 @@ import useProducts from '../../hooks/useProducts';
 import TableItem from './TableItem/TableItem';
 
 const ManageItems = () => {
-    const [products, setProduct] = useProducts()
+    const [products, setProducts] = useProducts()
     const navigate = useNavigate()
     const deleteData = (id) => {
         const proceed = window.confirm('Are you sure?');
         if (proceed) {
-            toast('Item is deleted')
+            fetch(`http://localhost:5000/inventory/${id}`, {
+                method: 'DELETE'
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.deletedCount > 0) {
+                        toast.success('Deleted');
+                        const remaining = products.filter(item => item._id !== id);
+                        setProducts(remaining);
+                    }
+                });
+
         }
 
     }
     return (
         <div className='container' style={{ minHeight: '100vh' }}>
-            <h1 className="text-center text-primary my-3">Manage Items</h1>
+            <h1 className="text-center text-primary my-3">Manage Inventory</h1>
             <div className="table">
                 <Table id='table' className='text-center'>
                     <thead>

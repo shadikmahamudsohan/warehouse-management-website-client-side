@@ -48,7 +48,7 @@ const SingleItem = ({ data }) => {
                                     <span className='text-decoration-underline' title='click to see more' onClick={() => setSeeMore(!seeMore)} style={{ cursor: 'pointer' }}>See less...</span>
                                 </>
                         }
-                        <button onClick={() => navigateToItemDetail(_id)} className="btn btn-primary mt-3 py-2 w-100">Manage Items</button>
+                        <button onClick={() => navigateToItemDetail(_id)} className="btn btn-primary mt-3 py-2 w-100">Stock Update</button>
                     </Card.Text>
                 </Card.Body>
             </Card>

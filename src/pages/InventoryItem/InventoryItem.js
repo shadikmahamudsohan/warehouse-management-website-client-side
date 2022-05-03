@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import useItem from '../../hooks/useItem';
 import { BsFillCartCheckFill } from 'react-icons/bs'
 import { toast } from 'react-toastify';
 
 const InventoryItem = () => {
-
+    const navigate = useNavigate()
     // getting item data
     const { itemId } = useParams()
     const [item] = useItem(itemId)
@@ -79,19 +79,22 @@ const InventoryItem = () => {
             <div className='col-md-6 d-flex justify-content-center align-items-center my-3'>
                 <div className=''>
                     <h1>Item name: {name}</h1>
-                    <h3 className='text-danger'>quantity: {allQuantity}</h3>
+                    <h4 className='text-danger'>quantity: {allQuantity}</h4>
                     <h4>Sold: {sold + deliver}</h4>
-                    <h5>Price: {price}$</h5>
+                    <h4>Price: {price}$</h4>
                     <p><strong>GenericName:</strong> {genericName}</p>
                     <p><strong>Description:</strong> {description}</p>
                     <button onClick={handleDeliver} className="btn btn-primary d-flex justify-content-center">
                         delivered
                         <BsFillCartCheckFill size={20} className='ms-2' />
                     </button>
-                    <form onSubmit={handleAddItems} className='mt-3'>
-                        <input type="number" name="number" id="number" className='ps-2' placeholder='Restock items' />
-                        <input type="submit" value="Add" />
+                    <form onSubmit={handleAddItems} className='my-3'>
+                        <div className="input-group">
+                            <input type="number" name="number" id="number" className='form-control ps-2' placeholder='Restock items' />
+                            <input type="submit" className='btn btn-outline-primary' value="Add" />
+                        </div>
                     </form>
+                    <div className="btn btn-success" onClick={() => navigate('/manageInventory')}>Manage Inventory</div>
                 </div>
             </div>
         </div>
