@@ -14,12 +14,17 @@ import RequireAuth from './shared/RequireAuth/RequireAuth';
 import ManageItems from './pages/ManageItems/ManageItems';
 import InventoryItem from './pages/InventoryItem/InventoryItem';
 import MYItems from './pages/MyItems/MyItems'
+import { useState } from 'react';
 
 function App() {
+  const [dark, setDark] = useState(false)
   return (
     <div className="App" id='main'>
       <ToastContainer />
-      <Header />
+      <Header
+        dark={dark}
+        setDark={setDark}
+      />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/home" element={<Home />} />
@@ -32,10 +37,14 @@ function App() {
           <InventoryItem />
         </RequireAuth>} />
         <Route path="/manageInventory" element={<RequireAuth>
-          <ManageItems />
+          <ManageItems
+            dark={dark}
+          />
         </RequireAuth>} />
         <Route path="/myItems" element={<RequireAuth>
-          <MYItems />
+          <MYItems
+            dark={dark}
+          />
         </RequireAuth>} />
         <Route path="*" element={<NotFound />} />
       </Routes>

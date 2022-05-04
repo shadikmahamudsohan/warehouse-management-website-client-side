@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Table from 'react-bootstrap/Table'
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
@@ -6,12 +6,10 @@ import useProducts from '../../hooks/useProducts';
 import LoadingSpinner from '../../shared/LoadingSpinner/LoadingSpinner';
 import TableItem from './TableItem/TableItem';
 
-const ManageItems = () => {
+const ManageItems = ({ dark }) => {
     const [products, setProducts, loading] = useProducts()
     const navigate = useNavigate()
-    if (loading) {
-        return <LoadingSpinner />
-    }
+
     const deleteData = (id) => {
         const proceed = window.confirm('Are you sure?');
         if (proceed) {
@@ -31,8 +29,9 @@ const ManageItems = () => {
     return (
         <div className='container' style={{ minHeight: '100vh' }}>
             <h1 className="text-center text-primary my-3">Manage Inventory</h1>
-            <div className="table">
-                <Table id='table' className='text-center'>
+            {loading ? <LoadingSpinner />
+                :
+                <Table id='table' className={`text-center ${dark && 'table-dark'}`}>
                     <thead>
                         <tr>
                             <th>Image</th>
@@ -47,9 +46,8 @@ const ManageItems = () => {
                         }
                     </tbody>
                 </Table>
-            </div>
+            }
             <button className="btn btn-success py-2 px-4 my-4" onClick={() => navigate('/addItems')}>Add New Item</button>
-
         </div>
     );
 };

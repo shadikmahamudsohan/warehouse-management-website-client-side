@@ -7,7 +7,7 @@ import auth from '../../Firebase/firebase.init';
 import LoadingSpinner from '../../shared/LoadingSpinner/LoadingSpinner';
 import Items from './Items/Items';
 
-const MYItems = () => {
+const MYItems = ({ dark }) => {
     const [user, userLoading] = useAuthState(auth);
     const [loading, setLoading] = useState(true);
     const [myItems, setMyItems] = useState([])
@@ -44,16 +44,15 @@ const MYItems = () => {
         }
     }
     if (userLoading) {
-        return <LoadingSpinner />
+        return
     }
-    if (loading) {
-        return <LoadingSpinner />
-    }
+
     return (
         <div className='container' style={{ minHeight: '100vh' }}>
             <h1 className="text-center text-primary my-3">Manage Inventory</h1>
-            <div className="table">
-                <Table id='table' className='text-center'>
+            {loading ? <LoadingSpinner />
+                :
+                <Table id='table' className={`text-center ${dark && 'table-dark'}`}>
                     <thead>
                         <tr>
                             <th>Image</th>
@@ -67,10 +66,10 @@ const MYItems = () => {
                             myItems.map(product => <Items key={product._id} data={product} deleteData={deleteData} />)
                         }
                     </tbody>
-                </Table>
-            </div>
-            <button className="btn btn-success py-2 px-4 my-4" onClick={() => navigate('/addItems')}>Add New Item</button>
 
+                </Table>
+            }
+            <button className="btn btn-success py-2 px-4 my-4" onClick={() => navigate('/addItems')}>Add New Item</button>
         </div>
     );
 };

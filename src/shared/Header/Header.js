@@ -8,7 +8,7 @@ import ActiveLink from '../ActiveLink/ActiveLink';
 import DarkMode from '../DarkMode/DarkMode';
 import './Header.css'
 
-const Header = () => {
+const Header = ({ dark, setDark }) => {
     const [user] = useAuthState(auth);
     const handleSignOut = () => {
         signOut(auth);
@@ -40,7 +40,10 @@ const Header = () => {
                                 </Nav.Link>
                         }
                     </Nav>
-                    <DarkMode />
+                    <DarkMode
+                        dark={dark}
+                        setDark={setDark}
+                    />
                 </Navbar.Collapse>
             </Container>
         </Navbar>
