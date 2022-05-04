@@ -3,12 +3,13 @@ import { useNavigate, useParams } from 'react-router-dom';
 import useItem from '../../hooks/useItem';
 import { BsFillCartCheckFill } from 'react-icons/bs'
 import { toast } from 'react-toastify';
+import LoadingSpinner from '../../shared/LoadingSpinner/LoadingSpinner';
 
 const InventoryItem = () => {
     const navigate = useNavigate()
     // getting item data
     const { itemId } = useParams()
-    const [item] = useItem(itemId)
+    const [item, , loading] = useItem(itemId)
     const { _id, name, img, sold, quantity, genericName, price, description } = item;
     //-------------------
 
@@ -34,7 +35,7 @@ const InventoryItem = () => {
         setAllQuantity(quantity + allQuantity);
         const updateItem = { _id, name, img, sold, quantity: quantity + allQuantity, genericName, price, description }
         // updating data
-        fetch(`http://localhost:5000/item/${_id}`, {
+        fetch(`https://quiet-refuge-83525.herokuapp.com/item/${_id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
@@ -61,7 +62,7 @@ const InventoryItem = () => {
         setAllQuantity(allQuantity - 1)
 
         // updating data
-        fetch(`http://localhost:5000/item/${_id}`, {
+        fetch(`https://quiet-refuge-83525.herokuapp.com/item/${_id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
@@ -71,6 +72,9 @@ const InventoryItem = () => {
             .then(res => res.json())
     }
     //-----------------------------
+    if (loading) {
+        return <LoadingSpinner />
+    }
     return (
         <div id='inventory' className='row align-items-center container mx-auto ' style={{ minHeight: '80vh' }}>
             <div className="col-md-6 d-flex justify-content-center align-items-center">

@@ -2,12 +2,17 @@ import { useEffect, useState } from 'react';
 
 const useItem = (id) => {
     const [item, setItem] = useState('');
+    const [loading, setLoading] = useState('')
     useEffect(() => {
-        fetch(`http://localhost:5000/inventory/${id}`)
+        setLoading(true)
+        fetch(`https://quiet-refuge-83525.herokuapp.com/inventory/${id}`)
             .then(res => res.json())
-            .then(data => setItem(data))
+            .then(data => {
+                setItem(data)
+                setLoading(false)
+            })
     }, [id])
-    return [item, setItem];
+    return [item, setItem, loading];
 };
 
 export default useItem;

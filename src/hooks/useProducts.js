@@ -6,7 +6,7 @@ const useProducts = () => {
     const [loading, setLoading] = useState(true);
     useEffect(() => {
         setLoading(true)
-        fetch('http://localhost:5000/inventory')
+        fetch('https://quiet-refuge-83525.herokuapp.com/inventory')
             .then(res => res.json())
             .then(data => {
                 setProducts(data)

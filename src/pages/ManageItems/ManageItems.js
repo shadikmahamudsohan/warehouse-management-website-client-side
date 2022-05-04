@@ -15,7 +15,7 @@ const ManageItems = () => {
     const deleteData = (id) => {
         const proceed = window.confirm('Are you sure?');
         if (proceed) {
-            fetch(`http://localhost:5000/inventory/${id}`, {
+            fetch(`https://quiet-refuge-83525.herokuapp.com/inventory/${id}`, {
                 method: 'DELETE'
             })
                 .then(res => res.json())
@@ -37,6 +37,7 @@ const ManageItems = () => {
                         <tr>
                             <th>Image</th>
                             <th>Product Name</th>
+                            <th>Quantity</th>
                             <th>Delete</th>
                         </tr>
                     </thead>

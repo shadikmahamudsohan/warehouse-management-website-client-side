@@ -13,7 +13,7 @@ const MYItems = () => {
     const [myItems, setMyItems] = useState([])
     useEffect(() => {
         setLoading(true)
-        fetch('http://localhost:5000/myItems', {
+        fetch('https://quiet-refuge-83525.herokuapp.com/myItems', {
             headers: {
                 'authorization': ` ${user?.email} ${localStorage.getItem('accessToken')}`,
             },
@@ -30,7 +30,7 @@ const MYItems = () => {
     const deleteData = (id) => {
         const proceed = window.confirm('Are you sure?');
         if (proceed) {
-            fetch(`http://localhost:5000/myItems/${id}`, {
+            fetch(`https://quiet-refuge-83525.herokuapp.com/myItems/${id}`, {
                 method: 'DELETE'
             })
                 .then(res => res.json())
@@ -58,6 +58,7 @@ const MYItems = () => {
                         <tr>
                             <th>Image</th>
                             <th>Product Name</th>
+                            <th>Quantity</th>
                             <th>Delete</th>
                         </tr>
                     </thead>

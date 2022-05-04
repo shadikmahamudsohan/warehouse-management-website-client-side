@@ -36,7 +36,7 @@ const AddItems = () => {
 
         const itemData = { name, genericName, email, price, supplierName, sold, quantity, img, description }
         if (name && genericName && email && price && supplierName && sold && quantity && img && description) {
-            fetch('http://localhost:5000/inventory', {
+            fetch('https://quiet-refuge-83525.herokuapp.com/inventory', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -117,7 +117,6 @@ const AddItems = () => {
                     <Form.Group className="mb-3" controlId="imgUrl">
                         <Form.Label>Add an image URL</Form.Label>
                         <Form.Control required type="url" name="img" placeholder="Image URL" />
-                        <p><small>https://i.ibb.co/fdJbR5N/img3.png</small></p>
                         <Form.Control.Feedback type="invalid">
                             Please provide a image URL
                         </Form.Control.Feedback>
