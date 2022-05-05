@@ -1,85 +1,146 @@
+import { Card, Col, Row } from 'react-bootstrap';
 import {
+    LineChart,
     ResponsiveContainer,
-    Tooltip,
+    Legend, Tooltip,
+    Line,
     XAxis,
     CartesianGrid,
-    Area,
-    AreaChart
+    PieChart,
+    Pie
 } from 'recharts';
 
 // Sample chart data
 const data = [
     {
-        "name": "Page A",
-        "uv": 4000,
-        "pv": 2400,
-        "amt": 2400
+        "name": "Sat",
+        "This Week": 100,
+        "Last Week": 150,
     },
     {
-        "name": "Page B",
-        "uv": 3000,
-        "pv": 1398,
-        "amt": 2210
+        "name": "Sun",
+        "This Week": 150,
+        "Last Week": 350,
     },
     {
-        "name": "Page C",
-        "uv": 2000,
-        "pv": 9800,
-        "amt": 2290
+        "name": "Mun",
+        "This Week": 470,
+        "Last Week": 200,
     },
     {
-        "name": "Page D",
-        "uv": 2780,
-        "pv": 3908,
-        "amt": 2000
+        "name": "Tue",
+        "This Week": 300,
+        "Last Week": 400,
     },
     {
-        "name": "Page E",
-        "uv": 1890,
-        "pv": 4800,
-        "amt": 2181
+        "name": "Wed",
+        "This Week": 650,
+        "Last Week": 280,
     },
     {
-        "name": "Page F",
-        "uv": 2390,
-        "pv": 3800,
-        "amt": 2500
+        "name": "Thu",
+        "This Week": 239,
+        "Last Week": 480,
     },
     {
-        "name": "Page G",
-        "uv": 3490,
-        "pv": 4300,
-        "amt": 2100
+        "name": "Fri",
+        "This Week": 700,
+        "Last Week": 530,
     }
 ]
 
-function Dashboard() {
+
+// pie chart
+const data01 = [
+    { name: '17 - 30 Years old', value: 33 },
+    { name: '31 - 50 Years old', value: 62 },
+    { name: '>=51 Years old', value: 10 },
+];
+
+
+const Dashboard = () => {
     return (
-        <>
-            <h1 className="text-primary text-center my-5">
-                Line Chart Using Rechart
-            </h1>
-            <ResponsiveContainer width="100%" aspect={3}>
-                <AreaChart data={data}>
-                    <defs>
-                        <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
-                            <stop offset="5%" stopColor="#8884d8" stopOpacity={0.8} />
-                            <stop offset="95%" stopColor="#8884d8" stopOpacity={0} />
-                        </linearGradient>
-                        <linearGradient id="colorPv" x1="0" y1="0" x2="0" y2="1">
-                            <stop offset="5%" stopColor="#82ca9d" stopOpacity={0.8} />
-                            <stop offset="95%" stopColor="#82ca9d" stopOpacity={0} />
-                        </linearGradient>
-                    </defs>
-                    <XAxis dataKey="name" />
-                    {/* <YAxis /> */}
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <Tooltip />
-                    <Area type="monotone" dataKey="uv" stroke="#8884d8" fillOpacity={1} fill="url(#colorUv)" />
-                    <Area type="monotone" dataKey="pv" stroke="#82ca9d" fillOpacity={1} fill="url(#colorPv)" />
-                </AreaChart>
-            </ResponsiveContainer>
-        </>
+        <div className='container mx-auto'>
+            <Row xs={1} md={3} className="g-4">
+                <Col>
+                    <Card className='shadow px-3'>
+                        <Card.Body>
+                            <Card.Title className='fs-2'> 2000 </Card.Title>
+                            <Card.Text>
+                                Item in Stock
+                            </Card.Text>
+                        </Card.Body>
+                    </Card>
+                </Col>
+                <Col>
+                    <Card className='shadow px-3'>
+                        <Card.Body>
+                            <Card.Title className='fs-2'> 100 </Card.Title>
+                            <Card.Text>
+                                Orders this week
+                            </Card.Text>
+                        </Card.Body>
+                    </Card>
+                </Col>
+                <Col>
+                    <Card className='shadow px-3'>
+                        <Card.Body>
+                            <Card.Title className='fs-2'> 400 </Card.Title>
+                            <Card.Text>
+                                Total Orders
+                            </Card.Text>
+                        </Card.Body>
+                    </Card>
+                </Col>
+            </Row>
+            <Row xs={1} md={2} className="g-4 mt-3">
+                <Col>
+                    <Card className='shadow px-3'>
+                        <Card.Body>
+                            <Card.Title>
+                                Sales Report
+                            </Card.Title>
+                            <ResponsiveContainer width="100%" aspect={2}>
+                                <LineChart data={data}
+                                    margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
+                                    <CartesianGrid strokeDasharray="3 3" />
+                                    <XAxis dataKey="name" />
+                                    <Tooltip />
+                                    <Legend />
+                                    <Line type="monotone" dataKey="This Week" stroke="#8884d8" />
+                                    <Line type="monotone" dataKey="Last Week" stroke="#82ca9d" />
+                                </LineChart>
+                            </ResponsiveContainer>
+                        </Card.Body>
+                    </Card>
+                </Col>
+                <Col>
+                    <Card className='shadow px-3'>
+                        <Card.Body>
+                            <Card.Title>
+                                Weekly Top Seller
+                            </Card.Title>
+                            <ResponsiveContainer width="100%" aspect={2}>
+                                <PieChart>
+                                    <Pie
+                                        dataKey="value"
+                                        isAnimationActive={false}
+                                        data={data01}
+                                        cx="50%"
+                                        cy="50%"
+                                        outerRadius={80}
+                                        fill="#8884d8"
+                                        label
+                                    />
+                                    <Legend />
+                                    <Tooltip />
+                                </PieChart>
+                            </ResponsiveContainer>
+                        </Card.Body>
+                    </Card>
+                </Col>
+            </Row>
+        </div>
     );
 }
 

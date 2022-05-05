@@ -72,35 +72,38 @@ const InventoryItem = () => {
             .then(res => res.json())
     }
     //-----------------------------
-    if (loading) {
-        return <LoadingSpinner />
-    }
+
     return (
         <div id='inventory' className='row align-items-center container mx-auto ' style={{ minHeight: '80vh' }}>
-            <div className="col-md-6 d-flex justify-content-center align-items-center">
-                <img src={img} className='w-100 rounded shadow' alt="img" />
-            </div>
-            <div className='col-md-6 d-flex justify-content-center align-items-center my-3'>
-                <div className=''>
-                    <h1>Item name: {name}</h1>
-                    <h4 className='text-danger'>quantity: {allQuantity}</h4>
-                    <h4>Sold: {sold + deliver}</h4>
-                    <h4>Price: {price}$</h4>
-                    <p><strong>GenericName:</strong> {genericName}</p>
-                    <p><strong>Description:</strong> {description}</p>
-                    <button onClick={handleDeliver} className="btn btn-primary d-flex justify-content-center">
-                        delivered
-                        <BsFillCartCheckFill size={20} className='ms-2' />
-                    </button>
-                    <form onSubmit={handleAddItems} className='my-3'>
-                        <div className="input-group">
-                            <input type="number" name="number" id="number" className='form-control ps-2' placeholder='Restock items' />
-                            <input type="submit" className='btn btn-outline-primary' value="Add" />
+            {loading ? <LoadingSpinner />
+                :
+                <>
+                    <div className="col-md-6 d-flex justify-content-center align-items-center">
+                        <img src={img} className='w-100 rounded shadow' alt="img" />
+                    </div>
+                    <div className='col-md-6 d-flex justify-content-center align-items-center my-3'>
+                        <div className=''>
+                            <h1>Item name: {name}</h1>
+                            <h4 className='text-danger'>quantity: {allQuantity}</h4>
+                            <h4>Sold: {sold + deliver}</h4>
+                            <h4>Price: {price}$</h4>
+                            <p><strong>GenericName:</strong> {genericName}</p>
+                            <p><strong>Description:</strong> {description}</p>
+                            <button onClick={handleDeliver} className="btn btn-primary d-flex justify-content-center">
+                                delivered
+                                <BsFillCartCheckFill size={20} className='ms-2' />
+                            </button>
+                            <form onSubmit={handleAddItems} className='my-3'>
+                                <div className="input-group">
+                                    <input type="number" name="number" id="number" className='form-control ps-2' placeholder='Restock items' />
+                                    <input type="submit" className='btn btn-outline-primary' value="Add" />
+                                </div>
+                            </form>
+                            <div className="btn btn-success" onClick={() => navigate('/manageInventory')}>Manage Inventory</div>
                         </div>
-                    </form>
-                    <div className="btn btn-success" onClick={() => navigate('/manageInventory')}>Manage Inventory</div>
-                </div>
-            </div>
+                    </div>
+                </>
+            }
         </div>
     );
 };

@@ -37,14 +37,10 @@ function App() {
           <InventoryItem />
         </RequireAuth>} />
         <Route path="/manageInventory" element={<RequireAuth>
-          <ManageItems
-            dark={dark}
-          />
+          <ManageItems dark={dark} />
         </RequireAuth>} />
         <Route path="/myItems" element={<RequireAuth>
-          <MYItems
-            dark={dark}
-          />
+          <MYItems dark={dark} />
         </RequireAuth>} />
         <Route path="*" element={<NotFound />} />
       </Routes>
