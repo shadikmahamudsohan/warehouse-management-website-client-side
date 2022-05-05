@@ -5,7 +5,7 @@ import Aos from 'aos'
 import "aos/dist/aos.css"
 import { useNavigate } from 'react-router-dom';
 
-const SingleItem = ({ data }) => {
+const SingleItem = ({ data, dark }) => {
     const [seeMore, setSeeMore] = useState(true)
     const { name, price, quantity, sold, supplierName, img, description, _id } = data;
     useEffect(() => {
@@ -17,8 +17,8 @@ const SingleItem = ({ data }) => {
     };
     return (
 
-        <Col>
-            <Card data-aos='fade-up' className='h-100 card-container text-dark'>
+        <Col data-aos='fade-up'>
+            <Card className={`h-100 card-container ${dark && 'bg-dark text-light'}`}>
                 <div className="inner">
                     <Card.Img variant="top" src={img} />
                 </div>

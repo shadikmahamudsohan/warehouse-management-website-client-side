@@ -15,6 +15,8 @@ import ManageItems from './pages/ManageItems/ManageItems';
 import InventoryItem from './pages/InventoryItem/InventoryItem';
 import MYItems from './pages/MyItems/MyItems'
 import { useState } from 'react';
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 function App() {
   const [dark, setDark] = useState(false)
@@ -26,8 +28,8 @@ function App() {
         setDark={setDark}
       />
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/home" element={<Home />} />
+        <Route path="/" element={<Home dark={dark} />} />
+        <Route path="/home" element={<Home dark={dark} />} />
         <Route path="/signIn" element={<SignIn />} />
         <Route path="/register" element={<Register />} />
         <Route path="/addItems" element={<RequireAuth>

@@ -1,6 +1,6 @@
 # Pharmabd
 
-Live website Link: [Create React App](https://github.com/facebook/create-react-app).
+Live website Link: [https://pharmabd-9c8e0.web.app/](https://pharmabd-9c8e0.web.app/).
 
 Server Link: [https://quiet-refuge-83525.herokuapp.com/](https://quiet-refuge-83525.herokuapp.com/)
 

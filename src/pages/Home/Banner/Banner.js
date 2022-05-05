@@ -5,7 +5,7 @@ import './Banner.css'
 
 const Banner = () => {
     return (
-        <div>
+        <section>
             <Carousel fade className='carousel d-flex h-100 justify-content-center align-items-center'>
                 <Carousel.Item className='carousel-item w-100'>
                     <img
@@ -103,7 +103,7 @@ const Banner = () => {
                     </Carousel.Caption>
                 </Carousel.Item>
             </Carousel>
-        </div>
+        </section>
     );
 };
 
