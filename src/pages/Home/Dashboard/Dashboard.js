@@ -76,10 +76,12 @@ const Dashboard = ({ dark }) => {
                 <Col>
                     <Card className={`shadow px-3 ${dark && 'bg-dark text-light'}`}>
                         <Card.Body className='d-flex justify-content-around align-items-center'>
-                            <Card.Text>
+                            <div>
                                 <Card.Title className='fs-2'> 2000 </Card.Title>
-                                Item in Stock
-                            </Card.Text>
+                                <Card.Text>
+                                    Item in Stock
+                                </Card.Text>
+                            </div>
                             <Card.Text >
                                 <BiStoreAlt size='75' style={{ opacity: '90%' }} />
                             </Card.Text>
@@ -89,10 +91,12 @@ const Dashboard = ({ dark }) => {
                 <Col>
                     <Card className={`shadow px-3 ${dark && 'bg-dark text-light'}`}>
                         <Card.Body className='d-flex justify-content-around align-items-center'>
-                            <Card.Text>
+                            <div>
                                 <Card.Title className='fs-2'> 100 </Card.Title>
-                                Orders this week
-                            </Card.Text>
+                                <Card.Text>
+                                    Orders this week
+                                </Card.Text>
+                            </div>
                             <Card.Text >
                                 <BsCalendarWeek size='70' style={{ opacity: '90%' }} />
                             </Card.Text>
@@ -102,10 +106,12 @@ const Dashboard = ({ dark }) => {
                 <Col>
                     <Card className={`shadow px-3 ${dark && 'bg-dark text-light'}`}>
                         <Card.Body className='d-flex justify-content-around align-items-center'>
-                            <Card.Text>
+                            <div>
                                 <Card.Title className='fs-2'> 400 </Card.Title>
-                                Total Orders
-                            </Card.Text>
+                                <Card.Text>
+                                    Total Orders
+                                </Card.Text>
+                            </div>
                             <Card.Text >
                                 <BsCart size='70' style={{ opacity: '90%' }} />
                             </Card.Text>

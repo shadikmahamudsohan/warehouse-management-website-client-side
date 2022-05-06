@@ -1,15 +1,17 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import SocialLogin from '../../shared/SocialLogin/SocialLogin';
 import './SignIn.css'
 import { BiErrorCircle } from 'react-icons/bi'
-import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { useSendPasswordResetEmail, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import auth from '../../Firebase/firebase.init';
 import LoadingSpinner from '../../shared/LoadingSpinner/LoadingSpinner';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 const SignIn = () => {
+    const emailRef = useRef('');
+
     const [errorMessage, setErrorMessage] = useState('');
     const [validated, setValidated] = useState(false);
     const [
@@ -18,6 +20,23 @@ const SignIn = () => {
         loading,
         error,
     ] = useSignInWithEmailAndPassword(auth);
+
+    const [sendPasswordResetEmail, sending] = useSendPasswordResetEmail(auth);
+
+    // reset password
+    const resetPassword = async () => {
+        const email = emailRef.current.value;
+        if (sending) {
+            return <LoadingSpinner />
+        }
+        if (email) {
+            await sendPasswordResetEmail(email);
+            toast('Sent email');
+        } else {
+            toast.error('Enter your email address');
+        }
+    };
+    //----------------------
 
     //private route navigate
     let navigate = useNavigate();
@@ -39,11 +58,11 @@ const SignIn = () => {
             .then((data) => {
                 localStorage.setItem("accessToken", data.token)
                 navigate(from, { replace: true });
-                toast('Logged In')
+                toast.success('Logged In')
             });
     }
 
-    const handleRegister = event => {
+    const handleSignIn = async event => {
         event.preventDefault()
         setErrorMessage('')
         // -----------validation---------
@@ -55,8 +74,9 @@ const SignIn = () => {
         }
         setValidated(true);
         // ---------validation end---------
-        const email = event.target.email.value
         const password = event.target.password.value
+        const email = emailRef.current.value;
+
         if (!email || !password) {
             setErrorMessage('Please fill all the forms!')
         } else {
@@ -65,17 +85,11 @@ const SignIn = () => {
                     event.target.reset()
                 })
         }
-        if (error) {
-            setErrorMessage(error.message)
-        }
-        if (loading) {
-            console.log(loading);
-            return <LoadingSpinner />
-        }
     }
 
     return (
         <div className="authentication ">
+            {loading && <LoadingSpinner />}
             <div className="row container mx-auto align-items-center">
                 <div className="col-md-6">
                     <img src="https://i.ibb.co/RB2Q6rn/login.png" className='w-100' alt="loginImage" />
@@ -83,10 +97,10 @@ const SignIn = () => {
                 <div className="col-md-6">
                     <div className='form-container'>
                         <h3 className=' fw-bold text-center'>Please Login</h3>
-                        <Form onSubmit={handleRegister} noValidate validated={validated} >
+                        <Form onSubmit={handleSignIn} noValidate validated={validated} >
                             <Form.Group className="mb-3" controlId="formBasicEmail">
                                 <Form.Label>Email address</Form.Label>
-                                <Form.Control required type="email" name="email" placeholder="Enter email" />
+                                <Form.Control required type="email" ref={emailRef} placeholder="Enter email" />
                                 <Form.Control.Feedback type="invalid">
                                     Please provide a valid email.
                                 </Form.Control.Feedback>
@@ -101,7 +115,7 @@ const SignIn = () => {
                             </Form.Group>
                             <div className="mb-3">
                                 <p>New to pharmabd? <Link className='text-white' to='/register'>Create a new account!</Link></p>
-
+                                <p>Forget Password? <span className='text-white text-decoration-underline' onClick={resetPassword} style={{ cursor: 'pointer' }}>Create a new password!</span></p>
                             </div>
                             <Button className="w-100 py-2 custom-button" type="submit">
                                 Submit
@@ -110,6 +124,12 @@ const SignIn = () => {
                                 errorMessage && <div className=" my-3 alert alert-danger" role="alert">
                                     <BiErrorCircle size={25} className='me-2' />
                                     {errorMessage}
+                                </div>
+                            }
+                            {
+                                error && <div className=" my-3 alert alert-danger" role="alert">
+                                    <BiErrorCircle size={25} className='me-2' />
+                                    {error.message}
                                 </div>
                             }
                         </Form>

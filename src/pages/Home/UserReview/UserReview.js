@@ -65,7 +65,7 @@ const UserReview = ({ dark }) => {
 
     return (
         <section className='container my-5 overflow-hidden'>
-            <h1 className='mb-5 sectionTitle'>See what Other Says _________________________</h1>
+            <h1 className='mb-5 sectionTitle'>See what Other Say _________________________</h1>
             <Row>
                 <Slider {...settings}>
                     {
