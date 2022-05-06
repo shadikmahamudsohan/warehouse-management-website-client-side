@@ -73,41 +73,49 @@ const SignIn = () => {
             return <LoadingSpinner />
         }
     }
+
     return (
-        <div className="authentication">
-            <div className='container form-container'>
-                <h3 className=' fw-bold text-center'>Please Login</h3>
-                <Form onSubmit={handleRegister} noValidate validated={validated} >
-                    <Form.Group className="mb-3" controlId="formBasicEmail">
-                        <Form.Label>Email address</Form.Label>
-                        <Form.Control required type="email" name="email" placeholder="Enter email" />
-                        <Form.Control.Feedback type="invalid">
-                            Please provide a valid email.
-                        </Form.Control.Feedback>
-                    </Form.Group>
+        <div className="authentication ">
+            <div className="row container mx-auto align-items-center">
+                <div className="col-md-6">
+                    <img src="https://i.ibb.co/RB2Q6rn/login.png" className='w-100' alt="loginImage" />
+                </div>
+                <div className="col-md-6">
+                    <div className='form-container'>
+                        <h3 className=' fw-bold text-center'>Please Login</h3>
+                        <Form onSubmit={handleRegister} noValidate validated={validated} >
+                            <Form.Group className="mb-3" controlId="formBasicEmail">
+                                <Form.Label>Email address</Form.Label>
+                                <Form.Control required type="email" name="email" placeholder="Enter email" />
+                                <Form.Control.Feedback type="invalid">
+                                    Please provide a valid email.
+                                </Form.Control.Feedback>
+                            </Form.Group>
 
-                    <Form.Group className="mb-3" controlId="formBasicPassword">
-                        <Form.Label>Password</Form.Label>
-                        <Form.Control required type="password" name="password" placeholder="Password" />
-                        <Form.Control.Feedback type="invalid">
-                            Please provide a valid password.
-                        </Form.Control.Feedback>
-                    </Form.Group>
-                    <div className="mb-3">
-                        <p>New to pharmabd? <Link className='text-white' to='/register'>Create a new account!</Link></p>
+                            <Form.Group className="mb-3" controlId="formBasicPassword">
+                                <Form.Label>Password</Form.Label>
+                                <Form.Control required type="password" name="password" placeholder="Password" />
+                                <Form.Control.Feedback type="invalid">
+                                    Please provide a valid password.
+                                </Form.Control.Feedback>
+                            </Form.Group>
+                            <div className="mb-3">
+                                <p>New to pharmabd? <Link className='text-white' to='/register'>Create a new account!</Link></p>
 
+                            </div>
+                            <Button className="w-100 py-2 custom-button" type="submit">
+                                Submit
+                            </Button>
+                            {
+                                errorMessage && <div className=" my-3 alert alert-danger" role="alert">
+                                    <BiErrorCircle size={25} className='me-2' />
+                                    {errorMessage}
+                                </div>
+                            }
+                        </Form>
+                        <SocialLogin />
                     </div>
-                    <Button className="w-100 py-2 custom-button" type="submit">
-                        Submit
-                    </Button>
-                    {
-                        errorMessage && <div className=" my-3 alert alert-danger" role="alert">
-                            <BiErrorCircle size={25} className='me-2' />
-                            {errorMessage}
-                        </div>
-                    }
-                </Form>
-                <SocialLogin />
+                </div>
             </div>
         </div>
     );

@@ -55,77 +55,92 @@ const AddItems = () => {
     }
     return (
         <div>
-            <div className='container form-container'>
-                <h3 className=' fw-bold text-center'>Add Products</h3>
-                <Form onSubmit={handleAddProduct} noValidate validated={validated} >
-                    <Form.Group className="mb-3" controlId="name">
-                        <Form.Label>Product name</Form.Label>
-                        <Form.Control required type="text" name="productName" placeholder="Product Name" />
-                        <Form.Control.Feedback type="invalid">
-                            Please provide a product name.
-                        </Form.Control.Feedback>
-                    </Form.Group>
-                    <Form.Group className="mb-3" controlId="genericName">
-                        <Form.Label>Generic name</Form.Label>
-                        <Form.Control required type="text" name="genericName" placeholder="Product Generic Name" />
-                        <Form.Control.Feedback type="invalid">
-                            Please provide a generic name.
-                        </Form.Control.Feedback>
-                    </Form.Group>
-                    <Form.Group className="mb-3" controlId="name">
-                        <Form.Label>Your email</Form.Label>
-                        <Form.Control type="email" value={user?.email} name='email' readOnly disabled placeholder="Product Name" />
-                    </Form.Group>
-                    <Form.Group className="mb-3" controlId="supplierName">
-                        <Form.Label>Supplier name</Form.Label>
-                        <Form.Control required type="text" name="supplierName" placeholder="Supplier name" />
-                        <Form.Control.Feedback type="invalid">
-                            Please provide a supplier name.
-                        </Form.Control.Feedback>
-                    </Form.Group>
-                    <Form.Group className="mb-3" controlId="sold">
-                        <Form.Label>Product sold</Form.Label>
-                        <Form.Control required type="number" name="sold" placeholder="Product sold" />
-                        <Form.Control.Feedback type="invalid">
-                            Please provide a number.
-                        </Form.Control.Feedback>
-                    </Form.Group>
-                    <div className="row">
-                        <Form.Group className="mb-3 col-sm-6" controlId="price">
-                            <Form.Label>Product Price</Form.Label>
-                            <Form.Control required type="number" name="price" placeholder="Enter price" />
-                            <Form.Control.Feedback type="invalid">
-                                Please provide a price.
-                            </Form.Control.Feedback>
-                        </Form.Group>
-                        <Form.Group className="mb-3 col-sm-6" controlId="quantity">
-                            <Form.Label>Product quantity</Form.Label>
-                            <Form.Control required type="number" name="quantity" placeholder="Enter quantity" />
-                            <Form.Control.Feedback type="invalid">
-                                Please provide a quantity.
-                            </Form.Control.Feedback>
-                        </Form.Group>
-                    </div>
-                    <Form.Group className="mb-3" controlId="description">
-                        <Form.Label>Add some description</Form.Label>
-                        <Form.Control as="textarea" required name='description' placeholder='Write the description' rows={3} />
-                        <Form.Control.Feedback type="invalid">
-                            Please provide some description.
-                        </Form.Control.Feedback>
-                    </Form.Group>
+            <div className="row container mx-auto align-items-center">
+                <div className="col-md-6">
+                    <img src="https://i.ibb.co/WBQwYv0/adding-1.png" className='w-100 order-1' alt="add Product Img" />
+                </div>
+                <div className="col-md-6 form-container order-2">
+                    <h3 className=' fw-bold text-center'>Add Products</h3>
+                    <Form onSubmit={handleAddProduct} noValidate validated={validated} >
+                        <div className="row">
+                            <div className="col-md-6">
+                                <Form.Group className="mb-3" controlId="name">
+                                    <Form.Label>Product name</Form.Label>
+                                    <Form.Control required type="text" name="productName" placeholder="Product Name" />
+                                    <Form.Control.Feedback type="invalid">
+                                        Please provide a product name.
+                                    </Form.Control.Feedback>
+                                </Form.Group>
+                            </div>
+                            <div className="col-md-6">
+                                <Form.Group className="mb-3" controlId="genericName">
+                                    <Form.Label>Generic name</Form.Label>
+                                    <Form.Control required type="text" name="genericName" placeholder="Product Generic Name" />
+                                    <Form.Control.Feedback type="invalid">
+                                        Please provide a generic name.
+                                    </Form.Control.Feedback>
+                                </Form.Group>
+                            </div>
+                        </div>
 
-                    <Form.Group className="mb-3" controlId="imgUrl">
-                        <Form.Label>Add an image URL</Form.Label>
-                        <Form.Control required type="url" name="img" placeholder="Image URL" />
-                        <Form.Control.Feedback type="invalid">
-                            Please provide a image URL
-                        </Form.Control.Feedback>
-                    </Form.Group>
-                    <button className="w-100 py-2 custom-button" type="Register">
-                        Add Product
-                    </button>
-                </Form>
+                        <Form.Group className="mb-3" controlId="name">
+                            <Form.Label>Your email</Form.Label>
+                            <Form.Control type="email" value={user?.email} name='email' readOnly disabled placeholder="Product Name" />
+                        </Form.Group>
+                        <Form.Group className="mb-3" controlId="supplierName">
+                            <Form.Label>Supplier name</Form.Label>
+                            <Form.Control required type="text" name="supplierName" placeholder="Supplier name" />
+                            <Form.Control.Feedback type="invalid">
+                                Please provide a supplier name.
+                            </Form.Control.Feedback>
+                        </Form.Group>
+                        <div className="row">
+                            <Form.Group className="mb-3 col-md-4" controlId="price">
+                                <Form.Label>Product Price</Form.Label>
+                                <Form.Control required type="number" name="price" placeholder="Enter price" />
+                                <Form.Control.Feedback type="invalid">
+                                    Please provide a price.
+                                </Form.Control.Feedback>
+                            </Form.Group>
+                            <Form.Group className="mb-3 col-md-4" controlId="quantity">
+                                <Form.Label>Product quantity</Form.Label>
+                                <Form.Control required type="number" name="quantity" placeholder="Enter quantity" />
+                                <Form.Control.Feedback type="invalid">
+                                    Please provide a quantity.
+                                </Form.Control.Feedback>
+                            </Form.Group>
+                            <div className="col-md-4">
+                                <Form.Group className="mb-3" controlId="sold">
+                                    <Form.Label>Product sold</Form.Label>
+                                    <Form.Control required type="number" name="sold" placeholder="Product sold" />
+                                    <Form.Control.Feedback type="invalid">
+                                        Please provide a number.
+                                    </Form.Control.Feedback>
+                                </Form.Group>
+                            </div>
+                        </div>
+                        <Form.Group className="mb-3" controlId="description">
+                            <Form.Label>Add some description</Form.Label>
+                            <Form.Control as="textarea" required name='description' placeholder='Write the description' rows={3} />
+                            <Form.Control.Feedback type="invalid">
+                                Please provide some description.
+                            </Form.Control.Feedback>
+                        </Form.Group>
+
+                        <Form.Group className="mb-3" controlId="imgUrl">
+                            <Form.Label>Add an image URL</Form.Label>
+                            <Form.Control required type="url" name="img" placeholder="Image URL" />
+                            <Form.Control.Feedback type="invalid">
+                                Please provide a image URL
+                            </Form.Control.Feedback>
+                        </Form.Group>
+                        <button className="w-100 py-2 custom-button" type="Register">
+                            Add Product
+                        </button>
+                    </Form>
+                </div>
             </div>
+
         </div>
     );
 };

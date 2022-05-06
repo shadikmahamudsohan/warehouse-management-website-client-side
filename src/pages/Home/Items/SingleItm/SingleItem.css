@@ -9,6 +9,7 @@
 .inner:hover img {
     transform: scale(1.5);
     opacity: 80%;
+    cursor: zoom-in;
 }
 
 .card-container {
@@ -20,4 +21,13 @@
     box-shadow: 0 5px 10px #0066ff;
     background: linear-gradient(0deg, rgb(0, 102, 255), #0066ff);
     color: white !important;
+}
+
+.item-btn {
+    background-color: #0066ff;
+}
+
+.card-container:hover .item-btn {
+    background-color: white;
+    color: black !important;
 }

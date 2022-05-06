@@ -1,6 +1,8 @@
 import { useEffect } from 'react';
 import { Card, Col, Row } from 'react-bootstrap';
 import Aos from 'aos'
+import { BiStoreAlt } from 'react-icons/bi'
+import { BsCalendarWeek, BsCart } from 'react-icons/bs'
 
 import {
     LineChart,
@@ -55,9 +57,9 @@ const data = [
 
 // pie chart
 const data01 = [
-    { name: '17 - 30 Years old', value: 13 },
-    { name: '31 - 50 Years old', value: 32 },
-    { name: '>=51 Years old', value: 60 },
+    { name: '17 - 30 Years', value: 13 },
+    { name: '31 - 50 Years', value: 32 },
+    { name: '>=51 Years', value: 60 },
 ];
 
 
@@ -69,41 +71,50 @@ const Dashboard = ({ dark }) => {
     }, [])
     return (
         <section className='container mx-auto my-5'>
-            <h1 className='mb-5' style={{ textAlign: 'right' }}>_________________ Dashboard</h1>
+            <h1 className='mb-5 sectionTitle' style={{ textAlign: 'right' }}>_________________ Dashboard</h1>
             <Row data-aos='fade-up' xs={1} md={3} className="g-4">
                 <Col>
                     <Card className={`shadow px-3 ${dark && 'bg-dark text-light'}`}>
-                        <Card.Body>
-                            <Card.Title className='fs-2'> 2000 </Card.Title>
+                        <Card.Body className='d-flex justify-content-around align-items-center'>
                             <Card.Text>
+                                <Card.Title className='fs-2'> 2000 </Card.Title>
                                 Item in Stock
                             </Card.Text>
-                        </Card.Body>
-                    </Card>
-                </Col>
-                <Col>
-                    <Card className={`shadow px-3 ${dark && 'bg-dark text-light'}`}>
-                        <Card.Body>
-                            <Card.Title className='fs-2'> 100 </Card.Title>
-                            <Card.Text>
-                                Orders this week
+                            <Card.Text >
+                                <BiStoreAlt size='75' style={{ opacity: '90%' }} />
                             </Card.Text>
                         </Card.Body>
                     </Card>
                 </Col>
                 <Col>
                     <Card className={`shadow px-3 ${dark && 'bg-dark text-light'}`}>
-                        <Card.Body>
-                            <Card.Title className='fs-2'> 400 </Card.Title>
+                        <Card.Body className='d-flex justify-content-around align-items-center'>
                             <Card.Text>
+                                <Card.Title className='fs-2'> 100 </Card.Title>
+                                Orders this week
+                            </Card.Text>
+                            <Card.Text >
+                                <BsCalendarWeek size='70' style={{ opacity: '90%' }} />
+                            </Card.Text>
+                        </Card.Body>
+                    </Card>
+                </Col>
+                <Col>
+                    <Card className={`shadow px-3 ${dark && 'bg-dark text-light'}`}>
+                        <Card.Body className='d-flex justify-content-around align-items-center'>
+                            <Card.Text>
+                                <Card.Title className='fs-2'> 400 </Card.Title>
                                 Total Orders
+                            </Card.Text>
+                            <Card.Text >
+                                <BsCart size='70' style={{ opacity: '90%' }} />
                             </Card.Text>
                         </Card.Body>
                     </Card>
                 </Col>
             </Row>
             <Row xs={1} md={2} className="g-4 mt-3">
-                <Col data-aos='fade-right'>
+                <Col data-aos='fade-up'>
                     <Card className={`shadow px-3 ${dark && 'bg-dark text-light'}`}>
                         <Card.Body>
                             <Card.Title>
@@ -123,7 +134,7 @@ const Dashboard = ({ dark }) => {
                         </Card.Body>
                     </Card>
                 </Col>
-                <Col data-aos='fade-left'>
+                <Col data-aos='fade-up'>
                     <Card className={`shadow px-3 ${dark && 'bg-dark text-light'}`}>
                         <Card.Body>
                             <Card.Title>

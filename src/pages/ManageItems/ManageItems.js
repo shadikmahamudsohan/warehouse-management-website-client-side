@@ -31,7 +31,7 @@ const ManageItems = ({ dark }) => {
             <h1 className="text-center text-primary my-3">Manage Inventory</h1>
             {loading ? <LoadingSpinner />
                 :
-                <Table id='table' className={`text-center ${dark && 'table-dark'}`}>
+                <Table id='table' striped className={`text-center ${dark && 'table-dark'}`}>
                     <thead>
                         <tr>
                             <th>Image</th>
