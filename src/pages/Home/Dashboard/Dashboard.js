@@ -69,7 +69,7 @@ const Dashboard = ({ dark }) => {
     }, [])
     return (
         <section className='container mx-auto my-5'>
-            <h1 className='mb-5' style={{ textAlign: 'right' }}>______________Dashboard</h1>
+            <h1 className='mb-5' style={{ textAlign: 'right' }}>_________________ Dashboard</h1>
             <Row data-aos='fade-up' xs={1} md={3} className="g-4">
                 <Col>
                     <Card className={`shadow px-3 ${dark && 'bg-dark text-light'}`}>
@@ -107,7 +107,7 @@ const Dashboard = ({ dark }) => {
                     <Card className={`shadow px-3 ${dark && 'bg-dark text-light'}`}>
                         <Card.Body>
                             <Card.Title>
-                                Sales Report
+                                Weekly Sales Report
                             </Card.Title>
                             <ResponsiveContainer width="100%" aspect={2}>
                                 <LineChart data={data}
@@ -127,7 +127,7 @@ const Dashboard = ({ dark }) => {
                     <Card className={`shadow px-3 ${dark && 'bg-dark text-light'}`}>
                         <Card.Body>
                             <Card.Title>
-                                Weekly Top Seller
+                                Weekly Top Buyer
                             </Card.Title>
                             <ResponsiveContainer width="100%" aspect={2}>
                                 <PieChart>

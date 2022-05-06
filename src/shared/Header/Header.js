@@ -21,6 +21,7 @@ const Header = ({ dark, setDark }) => {
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
                         <Nav.Link as={ActiveLink} to="/home">Home</Nav.Link>
+                        <Nav.Link as={ActiveLink} to="/blog">Blog</Nav.Link>
                         {
                             user && <>
                                 <Nav.Link as={ActiveLink} to="/manageInventory">Manage Inventory</Nav.Link>
