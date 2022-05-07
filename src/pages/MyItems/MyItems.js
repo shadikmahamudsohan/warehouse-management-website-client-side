@@ -1,3 +1,4 @@
+import { signOut } from 'firebase/auth';
 import React, { useEffect, useState } from 'react';
 import Table from 'react-bootstrap/Table'
 import { useAuthState } from 'react-firebase-hooks/auth';
@@ -20,6 +21,12 @@ const MYItems = ({ dark }) => {
         })
             .then(res => res.json())
             .then(data => {
+                if (data.message) {
+                    console.error(data.message)
+                    signOut(auth);
+                    navigate('/signIn');
+                    return
+                }
                 setMyItems(data)
                 setLoading(false)
             })
@@ -49,7 +56,7 @@ const MYItems = ({ dark }) => {
 
     return (
         <div className='container' style={{ minHeight: '100vh' }}>
-            <h1 className="text-center text-primary my-3">Manage Inventory</h1>
+            <h1 className="text-center heading-text my-3">MY Items</h1>
             {loading ? <LoadingSpinner />
                 :
                 <Table id='table' striped className={`text-center ${dark && 'table-dark'}`}>

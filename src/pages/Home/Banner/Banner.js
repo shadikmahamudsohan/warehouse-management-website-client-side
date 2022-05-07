@@ -33,7 +33,7 @@ const Banner = ({ dark }) => {
                                         2000,
                                     ]}
                                 /></span>
-                            <a href="#items" className="custom-button py-3 px-5 text-decoration-none">Check Our Management</a>
+                            <a href="#items" className="btn btn-dark py-2 px-5 text-decoration-none">Check Our Management</a>
                         </div>
                     </Carousel.Caption>
                 </Carousel.Item>
@@ -65,7 +65,7 @@ const Banner = ({ dark }) => {
                                     ]}
                                 />
                             </span>
-                            <a href="#items" className="custom-button py-3 px-5 text-decoration-none">Check Our Management</a>
+                            <a href="#items" className="btn btn-dark py-2 px-5 text-decoration-none">Check Our Management</a>
                         </div>
                     </Carousel.Caption>
                 </Carousel.Item>
@@ -99,7 +99,7 @@ const Banner = ({ dark }) => {
                                 />
 
                             </span>
-                            <a href="#items" className="custom-button py-3 px-5 text-decoration-none">Check Our Management</a>
+                            <a href="#items" className="btn btn-dark py-2 px-5 text-decoration-none">Check Our Management</a>
                         </div>
                     </Carousel.Caption>
                 </Carousel.Item>

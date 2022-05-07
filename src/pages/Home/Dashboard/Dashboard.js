@@ -12,7 +12,8 @@ import {
     XAxis,
     CartesianGrid,
     PieChart,
-    Pie
+    Pie,
+    Cell
 } from 'recharts';
 
 // Sample chart data
@@ -62,6 +63,20 @@ const data01 = [
     { name: '>=51 Years', value: 60 },
 ];
 
+const RADIAN = Math.PI / 180;
+const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, index }) => {
+    const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
+    const x = cx + radius * Math.cos(-midAngle * RADIAN);
+    const y = cy + radius * Math.sin(-midAngle * RADIAN);
+
+    return (
+        <text x={x} y={y} fill="white" textAnchor={x > cx ? 'start' : 'end'} dominantBaseline="central">
+            {`${(percent * 100).toFixed(0)}%`}
+        </text>
+    );
+};
+
+const COLORS = ['#004ca3', '#0070d1', '#0088FE'];
 
 
 const Dashboard = ({ dark }) => {
@@ -121,7 +136,7 @@ const Dashboard = ({ dark }) => {
             </Row>
             <Row xs={1} md={2} className="g-4 mt-3">
                 <Col data-aos='fade-up'>
-                    <Card className={`shadow px-3 ${dark && 'bg-dark text-light'}`}>
+                    <Card className={`shadow h-100 px-3 ${dark && 'bg-dark text-light'}`}>
                         <Card.Body>
                             <Card.Title>
                                 Weekly Sales Report
@@ -133,7 +148,7 @@ const Dashboard = ({ dark }) => {
                                     <XAxis dataKey="name" />
                                     <Tooltip />
                                     <Legend />
-                                    <Line type="monotone" dataKey="This Week" stroke="#8884d8" />
+                                    <Line type="monotone" dataKey="This Week" stroke="#004ca3" />
                                     <Line type="monotone" dataKey="Last Week" stroke="#82ca9d" />
                                 </LineChart>
                             </ResponsiveContainer>
@@ -141,7 +156,7 @@ const Dashboard = ({ dark }) => {
                     </Card>
                 </Col>
                 <Col data-aos='fade-up'>
-                    <Card className={`shadow px-3 ${dark && 'bg-dark text-light'}`}>
+                    <Card className={`shadow h-100 ${dark && 'bg-dark text-light'}`}>
                         <Card.Body>
                             <Card.Title>
                                 Weekly Top Buyer
@@ -150,15 +165,21 @@ const Dashboard = ({ dark }) => {
                                 <PieChart>
                                     <Pie
                                         dataKey="value"
-                                        isAnimationActive={false}
+                                        isAnimationActive={true}
                                         data={data01}
                                         cx="50%"
                                         cy="50%"
-                                        outerRadius={80}
+                                        outerRadius={'100%'}
                                         fill="#8884d8"
-                                        label
-                                    />
-                                    <Legend />
+                                        // label
+                                        labelLine={false}
+                                        label={renderCustomizedLabel}
+                                    >
+                                        {data.map((entry, index) => (
+                                            <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                                        ))}
+                                    </Pie>
+                                    <Legend className='d-none' />
                                     <Tooltip />
                                 </PieChart>
                             </ResponsiveContainer>

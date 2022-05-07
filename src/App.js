@@ -14,15 +14,20 @@ import RequireAuth from './shared/RequireAuth/RequireAuth';
 import ManageItems from './pages/ManageItems/ManageItems';
 import InventoryItem from './pages/InventoryItem/InventoryItem';
 import MYItems from './pages/MyItems/MyItems'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Blog from './pages/Blog/Blog'
 
 function App() {
   const [dark, setDark] = useState(false)
+  useEffect(() => {
+    const theme = localStorage.getItem('theme')
+    setDark(theme)
+  }, [])
+
   return (
-    <div className="App" id='main'>
+    <div className={`App ${dark && 'bg-dark text-light'}`} id='main'>
       <ToastContainer />
       <Header
         dark={dark}

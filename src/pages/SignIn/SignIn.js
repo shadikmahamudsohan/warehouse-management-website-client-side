@@ -7,7 +7,8 @@ import { useSendPasswordResetEmail, useSignInWithEmailAndPassword } from 'react-
 import auth from '../../Firebase/firebase.init';
 import LoadingSpinner from '../../shared/LoadingSpinner/LoadingSpinner';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
+import { toast, useToast } from 'react-toastify';
+import useTokens from '../../hooks/useTokens';
 
 const SignIn = () => {
     const emailRef = useRef('');
@@ -61,6 +62,11 @@ const SignIn = () => {
                 toast.success('Logged In')
             });
     }
+    // const [token] = useTokens(user)
+    // if (token) {
+    //     navigate(from, { replace: true });
+    //     toast.success('Logged In')
+    // }
 
     const handleSignIn = async event => {
         event.preventDefault()

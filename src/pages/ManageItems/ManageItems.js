@@ -28,7 +28,7 @@ const ManageItems = ({ dark }) => {
     }
     return (
         <div className='container' style={{ minHeight: '100vh' }}>
-            <h1 className="text-center text-primary my-3">Manage Inventory</h1>
+            <h1 className="text-center heading-text my-3">Manage Inventory</h1>
             {loading ? <LoadingSpinner />
                 :
                 <Table id='table' striped className={`text-center ${dark && 'table-dark'}`}>

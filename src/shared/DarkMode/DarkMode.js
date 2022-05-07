@@ -5,17 +5,7 @@ import { FaMoon } from 'react-icons/fa'
 const DarkMode = ({ dark, setDark }) => {
     const toggleDarkMode = () => {
         setDark(!dark)
-    }
-
-    if (dark) {
-        document?.getElementById('main')?.classList?.add('bg-dark')
-        document?.getElementById('main')?.classList?.add('text-light')
-        document?.getElementById('card')?.classList?.add('bg-dark')
-
-    } else {
-        document?.getElementById('main')?.classList?.remove('bg-dark')
-        document?.getElementById('main')?.classList?.remove('text-light')
-        document?.getElementById('card')?.classList?.remove('bg-dark')
+        localStorage.setItem("theme", dark)
     }
     return (
         <div className='ps-2'>
