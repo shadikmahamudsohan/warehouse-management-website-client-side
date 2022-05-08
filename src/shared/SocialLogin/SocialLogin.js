@@ -6,7 +6,7 @@ import auth from '../../Firebase/firebase.init';
 import { useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 import { toast } from 'react-toastify';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { BiErrorCircle } from 'react-icons/bi'
 
 const SocialLogin = () => {
@@ -15,8 +15,6 @@ const SocialLogin = () => {
 
     //private route navigate
     let navigate = useNavigate();
-    let location = useLocation();
-    let from = location.state?.from?.pathname || '/';
     //--------------
 
     if (loading) {
@@ -35,7 +33,12 @@ const SocialLogin = () => {
             .then((response) => response.json())
             .then((data) => {
                 localStorage.setItem("accessToken", data.token)
-                navigate(from, { replace: true });
+                const previousRoute = localStorage.getItem('navigate')
+                if (previousRoute) {
+                    navigate(previousRoute)
+                } else {
+                    navigate('/')
+                }
                 toast('Logged In')
             });
     }

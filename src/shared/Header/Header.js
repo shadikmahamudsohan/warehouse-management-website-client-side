@@ -2,7 +2,7 @@ import { signOut } from 'firebase/auth';
 import React from 'react';
 import { Button, Container, Nav, Navbar } from 'react-bootstrap';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import auth from '../../Firebase/firebase.init';
 import ActiveLink from '../ActiveLink/ActiveLink';
 import DarkMode from '../DarkMode/DarkMode';
@@ -10,8 +10,12 @@ import './Header.css'
 
 const Header = ({ dark, setDark }) => {
     const [user] = useAuthState(auth);
+    const location = useLocation();
+
     const handleSignOut = () => {
         signOut(auth);
+        console.log();
+        localStorage.setItem('navigate', `${location.pathname}`)
     }
     return (
         <Navbar className="py-2 text-center" bg="primary" variant="dark" expand="lg" sticky="top" >

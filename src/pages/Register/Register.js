@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import auth from '../../Firebase/firebase.init';
 import LoadingSpinner from '../../shared/LoadingSpinner/LoadingSpinner';
 import SocialLogin from '../../shared/SocialLogin/SocialLogin';
@@ -22,15 +22,9 @@ const Register = () => {
 
     const [updateProfile, updating] = useUpdateProfile(auth);
 
-    //private route
     let navigate = useNavigate();
-    let location = useLocation();
-    let from = location.state?.from?.pathname || '/';
-    //--------------
 
     if (user) {
-        toast('Account Created')
-        navigate(from, { replace: true });
         fetch('https://quiet-refuge-83525.herokuapp.com/login', {
             method: 'POST',
             body: JSON.stringify({
@@ -43,7 +37,6 @@ const Register = () => {
             .then((response) => response.json())
             .then((data) => {
                 localStorage.setItem("accessToken", data.token)
-                navigate(from, { replace: true });
                 toast('Account created')
             });
     }
@@ -71,13 +64,18 @@ const Register = () => {
         } else {
             await createUserWithEmailAndPassword(email, password)
                 .then(() => {
-                    if (loading) {
-                        return <LoadingSpinner />
-                    }
+                    event.target.reset()
                 })
             await updateProfile({ displayName: name })
+                .then(() => {
+                    const previousRoute = localStorage.getItem('navigate')
+                    if (previousRoute) {
+                        navigate(previousRoute)
+                    } else {
+                        navigate('/')
+                    }
+                })
         }
-
     }
     return (
         <div>

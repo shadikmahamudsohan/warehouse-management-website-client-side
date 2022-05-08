@@ -14,6 +14,7 @@ const SingleItem = ({ data, dark }) => {
     const navigate = useNavigate()
     const navigateToItemDetail = id => {
         navigate(`/inventory/${id}`);
+        localStorage.setItem('navigate', `/inventory/${id}`)
     };
     return (
 

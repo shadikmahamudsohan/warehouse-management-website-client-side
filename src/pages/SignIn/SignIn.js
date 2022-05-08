@@ -43,9 +43,9 @@ const SignIn = () => {
     let navigate = useNavigate();
     let location = useLocation();
     let from = location.state?.from?.pathname || '/';
+
     //--------------
     if (user) {
-
         fetch('https://quiet-refuge-83525.herokuapp.com/login', {
             method: 'POST',
             body: JSON.stringify({
@@ -58,7 +58,13 @@ const SignIn = () => {
             .then((response) => response.json())
             .then((data) => {
                 localStorage.setItem("accessToken", data.token)
-                navigate(from, { replace: true });
+                // navigate(from, { replace: true });
+                const previousRoute = localStorage.getItem('navigate')
+                if (previousRoute) {
+                    navigate(previousRoute)
+                } else {
+                    navigate('/')
+                }
                 toast.success('Logged In')
             });
     }
@@ -68,7 +74,7 @@ const SignIn = () => {
     //     toast.success('Logged In')
     // }
 
-    const handleSignIn = async event => {
+    const handleSignIn = event => {
         event.preventDefault()
         setErrorMessage('')
         // -----------validation---------

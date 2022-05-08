@@ -1,5 +1,6 @@
 import React from 'react';
 import { useAuthState, useSendEmailVerification } from 'react-firebase-hooks/auth';
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import auth from '../../../Firebase/firebase.init';
 import LoadingSpinner from '../../LoadingSpinner/LoadingSpinner';
@@ -7,9 +8,19 @@ import LoadingSpinner from '../../LoadingSpinner/LoadingSpinner';
 const VerifyEmail = () => {
     const [user] = useAuthState(auth);
     const [sendEmailVerification, sending, error] = useSendEmailVerification(auth);
-
+    // //send to private route
+    const navigate = useNavigate()
+    if (user.emailVerified) {
+        const previousRoute = localStorage.getItem('navigate')
+        if (previousRoute) {
+            navigate(previousRoute)
+        } else {
+            navigate('/')
+        }
+    }
+    // //--------------
     const sendVerifyEmail = async () => {
-        await sendEmailVerification();
+        await sendEmailVerification()
         toast('Email Sended');
         if (error) {
             return <p>{error.message}</p>
@@ -21,7 +32,6 @@ const VerifyEmail = () => {
                 <div>
                     {sending ? <LoadingSpinner /> :
                         <>
-                            {/* {error && <p className='text-danger'>{error}</p>} */}
                             <h2>Please verify your email</h2>
                             <br />
                             <p>You are almost there! We send a email to <br />
