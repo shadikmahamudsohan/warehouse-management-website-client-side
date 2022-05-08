@@ -5,6 +5,7 @@ import Items from './Items/Items';
 import UserReview from './UserReview/UserReview';
 import './Home.css'
 const Home = ({ dark }) => {
+    localStorage.setItem('navigate', `/home`)
     return (
         <div>
             <Banner dark={dark} />

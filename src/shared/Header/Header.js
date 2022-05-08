@@ -20,7 +20,7 @@ const Header = ({ dark, setDark }) => {
     return (
         <Navbar className="py-2 text-center" bg="primary" variant="dark" expand="lg" sticky="top" >
             <Container>
-                <Navbar.Brand as={Link} to="/"><h2 className='me-3 title'>pharmabd</h2></Navbar.Brand>
+                <Navbar.Brand as={Link} to="/"><h2 className='me-3 title'>PharmaBD</h2></Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
@@ -38,10 +38,10 @@ const Header = ({ dark, setDark }) => {
                     <Nav className='ms-auto'>
                         {
                             user ? <Nav.Link onClick={handleSignOut}>
-                                <Button variant="danger" className='px-4  w-100'>sign Out</Button>
+                                <Button variant="danger" className='px-4  w-100'>Sign Out</Button>
                             </Nav.Link> :
                                 <Nav.Link as={Link} to="/signIn">
-                                    <Button variant="light" className='px-4  w-100'>sign in</Button>
+                                    <Button variant="light" className='px-4  w-100'>Sign In</Button>
                                 </Nav.Link>
                         }
                     </Nav>

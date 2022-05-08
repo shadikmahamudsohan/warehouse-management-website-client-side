@@ -6,9 +6,8 @@ import { BiErrorCircle } from 'react-icons/bi'
 import { useSendPasswordResetEmail, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import auth from '../../Firebase/firebase.init';
 import LoadingSpinner from '../../shared/LoadingSpinner/LoadingSpinner';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { toast, useToast } from 'react-toastify';
-import useTokens from '../../hooks/useTokens';
+import { Link, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const SignIn = () => {
     const emailRef = useRef('');
@@ -41,9 +40,6 @@ const SignIn = () => {
 
     //private route navigate
     let navigate = useNavigate();
-    let location = useLocation();
-    let from = location.state?.from?.pathname || '/';
-
     //--------------
     if (user) {
         fetch('https://quiet-refuge-83525.herokuapp.com/login', {
@@ -68,11 +64,6 @@ const SignIn = () => {
                 toast.success('Logged In')
             });
     }
-    // const [token] = useTokens(user)
-    // if (token) {
-    //     navigate(from, { replace: true });
-    //     toast.success('Logged In')
-    // }
 
     const handleSignIn = event => {
         event.preventDefault()

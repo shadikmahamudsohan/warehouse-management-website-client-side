@@ -1,11 +1,17 @@
 import React from 'react';
 import { BiSun } from 'react-icons/bi'
 import { FaMoon } from 'react-icons/fa'
+import { toast } from 'react-toastify';
 
 const DarkMode = ({ dark, setDark }) => {
     const toggleDarkMode = () => {
         setDark(!dark)
         localStorage.setItem("theme", dark)
+        if (dark) {
+            toast.success('Set to light mode')
+        } else {
+            toast.success('Set dark mode')
+        }
     }
     return (
         <div className='ps-2'>

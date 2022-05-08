@@ -1,4 +1,4 @@
-# Pharmabd
+# PharmaBD
 
 Live website Link: [https://pharmabd-9c8e0.web.app/](https://pharmabd-9c8e0.web.app/)
 
